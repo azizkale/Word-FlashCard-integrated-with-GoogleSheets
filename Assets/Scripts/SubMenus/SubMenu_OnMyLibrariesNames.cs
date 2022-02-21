@@ -1,0 +1,111 @@
+using Newtonsoft.Json;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+public class SubMenu_OnMyLibrariesNames : MonoBehaviour
+{
+   public static void rename(GameObject prefabsubmenu_renamefunction, GameObject clonesubmenu,GameObject prefabalertwarning, AllLibrariesInfo lab, GameObject canvas)
+   {
+        GameObject cloneRename = Instantiate(
+            prefabsubmenu_renamefunction,
+            clonesubmenu.transform.position,
+           Quaternion.identity,
+           clonesubmenu.transform);
+        cloneRename.transform.localScale = Vector3.one;
+
+        cloneRename.transform.Find("InputField (TMP)").transform.Find("Text Area").transform.Find("Placeholder").GetComponent<TextMeshProUGUI>().text = lab.name;
+
+        //Cancel-Button on "rename-function" card (prefab) 
+        cloneRename.transform.Find("btn_Cancel").GetComponent<Button>().onClick.AddListener(() => {
+            DestroyImmediate(cloneRename);
+        });
+
+        // OK-Button  on "rename-function" card (prefab) 
+        cloneRename.transform.Find("btn_OK").GetComponent<Button>().onClick.AddListener(() => {
+
+            string newname = cloneRename.transform.Find("InputField (TMP)").transform.Find("Text Area").transform.Find("Text").GetComponent<TextMeshProUGUI>().text;
+
+            if (newname.Length <= 1)
+            {
+                alertWarning.nullOrEmptyFileName(prefabalertwarning, canvas);
+            }
+
+            if (PlayerPrefs.GetString(newname) != "")
+            {
+                alertWarning.ExisitingFileOnTheDirectory(prefabalertwarning, canvas);
+            }
+
+
+            if (PlayerPrefs.GetString(newname) == "" && newname.Length > 1 && newname != null)
+            {
+                //calls the the list allLibrariesInfo
+                List<AllLibrariesInfo> allLibrariesInfo = JsonConvert.DeserializeObject<List<AllLibrariesInfo>>(PlayerPrefs.GetString("allLibrariesInfo"));
+
+                //calls the library from the device by its old name
+                Library callinglab = JsonConvert.DeserializeObject<Library>(PlayerPrefs.GetString(lab.name));
+
+                //finds the library which is wanted to manipulate
+                AllLibrariesInfo infoOfTheLibrary = allLibrariesInfo.Find(i => i.name == lab.name);
+
+                //changes the name of the library
+                infoOfTheLibrary.name = newname;
+
+                //re-saved the allLibrariesInfo in the device
+                PlayerPrefs.SetString("allLibrariesInfo", JsonConvert.SerializeObject(allLibrariesInfo));
+
+                //delete the the library from device at first
+                PlayerPrefs.DeleteKey(lab.name);
+
+                // and re-saved the library by its new name (newname)
+                PlayerPrefs.SetString(newname, JsonConvert.SerializeObject(callinglab));
+
+                //closes submenu
+                DestroyImmediate(clonesubmenu);
+
+                //reloads to scene to reload the libraries with the new name
+                SceneManager.LoadScene("MyLibraryNames");
+            }
+        });
+
+
+
+        
+
+    }
+
+   public static void delete(AllLibrariesInfo singlelibraryInfo, GameObject canvas, GameObject prefabDeleteCard)
+    {
+        GameObject cloneDeleteCard = Instantiate(prefabDeleteCard, canvas.transform.position, Quaternion.identity, canvas.transform);
+        cloneDeleteCard.transform.localScale = Vector3.one;
+
+        //cloneDeleteCard.transform.Find("Header").transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text = "Plase type " + singlelibraryInfo.name + " to confirm";
+
+        TextMeshProUGUI libraryname = cloneDeleteCard.transform.Find("InputField (TMP)").transform.Find("Text Area").transform.Find("Text").GetComponent<TextMeshProUGUI>();
+
+        cloneDeleteCard.transform.Find("btn_Cancel").GetComponent<Button>().onClick.AddListener(() => {
+            DestroyImmediate(cloneDeleteCard);
+        });
+            cloneDeleteCard.transform.Find("btn_OK").GetComponent<Button>().onClick.AddListener(() => {
+            //if (libraryname.text == singlelibraryInfo.name || libraryname.text == "Sample Library")
+            //{
+                //at first info about library are deleted and re-saved
+                Delete.deleteFromAllLibrariesInfo(singlelibraryInfo);
+
+                // then the library deleted from device
+                Delete.deleteLibraryFromDevice(singlelibraryInfo);
+
+                //reloads to scene to reload the libraries with the new name
+                SceneManager.LoadScene("MyLibraryNames");
+            //}
+            //else
+            //    cloneDeleteCard.transform.Find("Header").transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>().color = Color.red;
+        });
+
+       
+    }
+
+
+}

@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/MyLibrary/MyLibraryNames.unity
+    guid: e2c856ff50e8ea04cbe521836ce058ff
+  - enabled: 1
+    path: Assets/Scenes/MyLibrary/LibraryContent.unity
+    guid: 908bb62397708094ab6576ad7e759998
+  - enabled: 1
+    path: Assets/Scenes/Learning/flashcard.unity
     guid: dd9ede3d861347a4d88849bdd113839d
   m_configObjects: {}
