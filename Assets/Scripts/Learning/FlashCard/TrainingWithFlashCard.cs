@@ -198,7 +198,9 @@ public class TrainingWithFlashCard : MonoBehaviour
             });
 
             cloneprefabupdateword.transform.Find("btnCancel").GetComponent<Button>().onClick.AddListener(() => { 
-                DestroyImmediate(cloneprefabupdateword); 
+                DestroyImmediate(cloneprefabupdateword);
+                DestroyImmediate(cloneSingleWordEditMenu);
+                btnSingleWordEditMenu.gameObject.SetActive(true);
             });
         });
 
@@ -214,6 +216,7 @@ public class TrainingWithFlashCard : MonoBehaviour
             previousWord();
             //close the menu
             DestroyImmediate(cloneSingleWordEditMenu);
+            btnSingleWordEditMenu.gameObject.SetActive(true);
         });
 
         cloneSingleWordEditMenu.transform.Find("btnReset").GetComponent<Button>().onClick.AddListener(() => { Debug.Log("Reseted"); });
