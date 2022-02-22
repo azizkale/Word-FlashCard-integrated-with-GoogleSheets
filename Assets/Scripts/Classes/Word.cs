@@ -5,7 +5,7 @@ public class Word
     public string meaning;
     public string languageFrom;
     public string languageTo;
-    public int numberOfSight;
+    public int viewCount;
     public bool archive;
     
 }

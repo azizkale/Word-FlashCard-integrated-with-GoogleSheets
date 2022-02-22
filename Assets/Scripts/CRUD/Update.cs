@@ -49,7 +49,7 @@ public class Update : MonoBehaviour
         newword.meaning = newMeaning;
         newword.languageFrom = oldword.languageFrom;
         newword.languageTo = oldword.languageTo;
-        newword.numberOfSight = oldword.numberOfSight;
+        newword.viewCount = oldword.viewCount;
 
         int index = library.words.IndexOf(oldword);
 
@@ -58,5 +58,5 @@ public class Update : MonoBehaviour
         //save library again
         Save.saveSingleLibrary(library);
     }
-  
+ 
 }

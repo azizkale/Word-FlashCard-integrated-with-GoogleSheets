@@ -265,15 +265,7 @@ public class Importing : MonoBehaviour
             // library is created and saved
             //===========creating==========
             Library lib = Create.createNewLibrary(filename, allwords, selectedLibraires, libinfo);
-            //Library lib = new Library();
-            //lib.name = filename;
-            //lib.wordsCount = allwords.Count;
-            //lib.words = allwords;
-            //if (selectedLibraires.Count == 1)
-            //    lib.language = selectedLibraires[0].libname;
-            //else
-            //    lib.language = "Multilingual";
-            //libinfo.wordsCount = allwords.Count;
+          
 
             //===============saving====================          
             // all library are saved by its name         

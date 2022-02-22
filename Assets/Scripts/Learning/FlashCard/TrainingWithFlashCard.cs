@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,10 +13,10 @@ public class TrainingWithFlashCard : MonoBehaviour
     //===============================================================
 
     public Image turningCard;
-    int index = 0; // Count of the List<Word> that is learnd runtime
+    private int index = 0; // Count of the List<Word> that is learnd runtime
     public GameObject startButton;
-    Library libraryToLearn;
-    Word displayedWord;
+    private Library libraryToLearn;
+    private Word displayingWord;
     public GameObject wordInfo;
     public Button btnCorrectAnswer;
     public Button btnWrongAnswer;
@@ -54,14 +53,14 @@ public class TrainingWithFlashCard : MonoBehaviour
 
     private void showTheWordsOnTheTurningCard(int indx)
     {
-        displayedWord = libraryToLearn.words[index];
+        displayingWord = libraryToLearn.words[index];
 
-        turningCard.GetComponent<Image>().transform.Find("btnQuestion").transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text = displayedWord.theWord;
+        turningCard.GetComponent<Image>().transform.Find("btnQuestion").transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text = displayingWord.theWord;
 
-        turningCard.GetComponent<Image>().transform.Find("btnAnswer").transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text = displayedWord.meaning;
+        turningCard.GetComponent<Image>().transform.Find("btnAnswer").transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text = displayingWord.meaning;
 
         //to display sightCount of the word
-        wordInfo.transform.Find("SightCountIcon").transform.Find("TMP_SightCount").GetComponent<TextMeshProUGUI>().text = displayedWord.numberOfSight.ToString();
+        wordInfo.transform.Find("SightCountIcon").transform.Find("TMP_SightCount").GetComponent<TextMeshProUGUI>().text = displayingWord.viewCount.ToString();
 
         //to control that user cliks it only one time
         btnCorrectAnswer.GetComponent<Button>().interactable = true;
@@ -93,7 +92,7 @@ public class TrainingWithFlashCard : MonoBehaviour
    public void correctAnswer()
     {      
         //increases and displays the count of sight of the word
-        wordInfo.transform.Find("SightCountIcon").transform.Find("TMP_SightCount").GetComponent<TextMeshProUGUI>().text = (++displayedWord.numberOfSight).ToString();
+        wordInfo.transform.Find("SightCountIcon").transform.Find("TMP_SightCount").GetComponent<TextMeshProUGUI>().text = (++displayingWord.viewCount).ToString();
 
         Save.saveSingleLibrary(libraryToLearn);
 
@@ -122,7 +121,7 @@ public class TrainingWithFlashCard : MonoBehaviour
 
     private void btnPreviuosInteractablitiyControl(Button btnnext, Button btnprevious, int index)
     {
-        if (index > 0)
+        if (index >= 0)
         {
             btnnext.interactable = true;
         }
@@ -140,7 +139,7 @@ public class TrainingWithFlashCard : MonoBehaviour
     {
         //thank to this function user sees always the word which was less seen.
         lib.words.Sort(delegate (Word x, Word y) {
-            return x.numberOfSight.CompareTo(y.numberOfSight);
+            return x.viewCount.CompareTo(y.viewCount);
         });
 
         return lib;
@@ -168,20 +167,20 @@ public class TrainingWithFlashCard : MonoBehaviour
 
             //question text
             TMP_InputField inputQ = cloneprefabupdateword.transform.Find("TMPQuestion").GetComponent<TMP_InputField>();
-            inputQ.text = displayedWord.theWord;
+            inputQ.text = displayingWord.theWord;
 
             //answer text
             TMP_InputField inputA = cloneprefabupdateword.transform.Find("TMPAnswer").GetComponent<TMP_InputField>();
-            inputA.text = displayedWord.meaning;            
+            inputA.text = displayingWord.meaning;            
             
             //when this is clicked, the text of TMP_InputFileds are updated
             cloneprefabupdateword.transform.Find("btnUpdate").GetComponent<Button>().onClick.AddListener(() => {
                 if (!string.IsNullOrEmpty(inputQ.text) && !string.IsNullOrEmpty(inputA.text))
                 {
-                    Update.updateSingleWord(displayedWord, libraryToLearn, inputQ.text, inputA.text);
+                    Update.updateSingleWord(displayingWord, libraryToLearn, inputQ.text, inputA.text);
                     //chamges the displayWord on the screen
-                    displayedWord.theWord = inputQ.text;
-                    displayedWord.meaning = inputA.text;
+                    displayingWord.theWord = inputQ.text;
+                    displayingWord.meaning = inputA.text;
                     //to reload
                     nextWord();
                     previousWord();
@@ -206,8 +205,8 @@ public class TrainingWithFlashCard : MonoBehaviour
 
         cloneSingleWordEditMenu.transform.Find("btnSendToArchive").GetComponent<Button>().onClick.AddListener(() => {
 
-            displayedWord.archive = true;          
-            libraryToLearn.words.Remove(displayedWord);//remove from screen           
+            displayingWord.archive = true;          
+            libraryToLearn.words.Remove(displayingWord);//remove from screen           
             Save.saveSingleLibrary(libraryToLearn);// resave
 
             alertWarning.generalWarning(prefabGeneralCompleted, canvas, "The Word was successfully sent to archive.");
@@ -219,9 +218,30 @@ public class TrainingWithFlashCard : MonoBehaviour
             btnSingleWordEditMenu.gameObject.SetActive(true);
         });
 
-        cloneSingleWordEditMenu.transform.Find("btnReset").GetComponent<Button>().onClick.AddListener(() => { Debug.Log("Reseted"); });
+        cloneSingleWordEditMenu.transform.Find("btnReset").GetComponent<Button>().onClick.AddListener(() => {
+            displayingWord.viewCount = 0;
+            Save.saveSingleLibrary(libraryToLearn);
+            //to reload
+            nextWord();
+            previousWord();
+            alertWarning.generalCompleted(prefabGeneralCompleted, canvas, "The word was successfully reset.");
+            DestroyImmediate(cloneSingleWordEditMenu);
+            btnSingleWordEditMenu.gameObject.SetActive(true);
+        });
 
-        cloneSingleWordEditMenu.transform.Find("btnDelete").GetComponent<Button>().onClick.AddListener(() => { Debug.Log("Deleted"); });
+        cloneSingleWordEditMenu.transform.Find("btnDelete").GetComponent<Button>().onClick.AddListener(() => {
+
+            libraryToLearn.words.Remove(displayingWord);
+            Save.saveSingleLibrary(libraryToLearn);
+            //to reload
+            nextWord();
+            previousWord();
+            alertWarning.generalCompleted(prefabGeneralCompleted, canvas, "The word was successfully deleted.");
+            DestroyImmediate(cloneSingleWordEditMenu);
+            btnSingleWordEditMenu.gameObject.SetActive(true);
+
+
+        });
 
         cloneSingleWordEditMenu.transform.Find("btnCancel").GetComponent<Button>().onClick.AddListener(() => {
             btnSingleWordEditMenu.gameObject.SetActive(true);
