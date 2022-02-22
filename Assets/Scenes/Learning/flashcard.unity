@@ -2118,6 +2118,8 @@ MonoBehaviour:
     type: 3}
   prefabGeneralWarnung: {fileID: 7866630584525647786, guid: 42f7e39e74c3fbb45b375aa5f003efce,
     type: 3}
+  prefabGeneralCompleted: {fileID: 6466996874046129223, guid: fbccc158b37d6764c90d34f911e304b5,
+    type: 3}
 --- !u!1 &1126277570
 GameObject:
   m_ObjectHideFlags: 0
