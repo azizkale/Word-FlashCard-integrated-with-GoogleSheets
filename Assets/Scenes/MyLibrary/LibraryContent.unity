@@ -124,18 +124,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &238115975 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3033258095587805534, guid: 020d0e45d6504204c9348c7f43d19214,
-    type: 3}
-  m_PrefabInstance: {fileID: 3033258095243790115}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &471344141
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,10 +153,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43387bd749119254dad0abc9417603e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wordsPairCard: {fileID: 4445386710438293739, guid: 0356b42c2469d8042b7d90c3e37c83dc,
+  prefabWordsPairCard: {fileID: 4445386710438293739, guid: 0356b42c2469d8042b7d90c3e37c83dc,
+    type: 3}
+  prefabUpdateWord: {fileID: 8078209614520856690, guid: d1a22387ea465d842af9ec2d3a5339df,
+    type: 3}
+  prefabCompleteSuccessfully: {fileID: 6466996874046129223, guid: fbccc158b37d6764c90d34f911e304b5,
+    type: 3}
+  prefabGeneralWarnung: {fileID: 7866630584525647786, guid: 42f7e39e74c3fbb45b375aa5f003efce,
     type: 3}
   scrolContainer: {fileID: 943041452}
-  sceneTitle: {fileID: 238115975}
+  canvas: {fileID: 2089467767}
 --- !u!4 &471344143
 Transform:
   m_ObjectHideFlags: 0
@@ -338,6 +332,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2089467767 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3033258095848616491, guid: 020d0e45d6504204c9348c7f43d19214,
+    type: 3}
+  m_PrefabInstance: {fileID: 3033258095243790115}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3033258095243790115
 PrefabInstance:
   m_ObjectHideFlags: 0
