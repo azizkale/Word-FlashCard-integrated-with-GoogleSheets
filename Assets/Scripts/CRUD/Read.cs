@@ -17,11 +17,13 @@ public class Read : MonoBehaviour
     {
         Library theLibrary = JsonConvert.DeserializeObject<Library>(PlayerPrefs.GetString(libraryname));
 
-        foreach (Word word in theLibrary.words)
-        {
-            if (word.archive)
-                theLibrary.words.Remove(word);
-        }
+        theLibrary.words.Remove(theLibrary.words.Find(w => w.archive == true));
+
+        //foreach (Word word in theLibrary.words)
+        //{
+        //    if (word.archive == true)
+        //        theLibrary.words.Remove(word);
+        //}
         return theLibrary;
     }
 }

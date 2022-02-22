@@ -797,7 +797,7 @@ GameObject:
   - component: {fileID: 7090423613558572481}
   - component: {fileID: 4853318174336552600}
   m_Layer: 5
-  m_Name: btnSenToArchive
+  m_Name: btnSendToArchive
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

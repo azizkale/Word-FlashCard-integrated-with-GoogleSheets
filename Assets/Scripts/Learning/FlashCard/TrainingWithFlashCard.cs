@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -30,6 +31,7 @@ public class TrainingWithFlashCard : MonoBehaviour
     public GameObject prefabUpdateWord;
     public GameObject prefabCompleteSuccessfully;
     public GameObject prefabGeneralWarnung;
+    public GameObject prefabGeneralCompleted;
 
     void Start()
     {
@@ -93,7 +95,7 @@ public class TrainingWithFlashCard : MonoBehaviour
         //increases and displays the count of sight of the word
         wordInfo.transform.Find("SightCountIcon").transform.Find("TMP_SightCount").GetComponent<TextMeshProUGUI>().text = (++displayedWord.numberOfSight).ToString();
 
-        Save.savetheLibrary(libraryToLearn);
+        Save.saveSingleLibrary(libraryToLearn);
 
         //to control that user cliks it only one time
        btnCorrectAnswer.GetComponent<Button>().interactable = false;
@@ -131,7 +133,7 @@ public class TrainingWithFlashCard : MonoBehaviour
     }
     private void displayWordNumber(Library lib, int index)
     {
-        wordsNumber.text = "["+(index + 1).ToString() + "/" + lib.wordsCount.ToString()+"]";
+        wordsNumber.text = "["+(index + 1).ToString() + "/" + lib.words.Count.ToString()+"]";
     }
 
     private Library sortTheWordList(Library lib)
@@ -198,11 +200,21 @@ public class TrainingWithFlashCard : MonoBehaviour
             cloneprefabupdateword.transform.Find("btnCancel").GetComponent<Button>().onClick.AddListener(() => { 
                 DestroyImmediate(cloneprefabupdateword); 
             });
-
-
         });
 
-        cloneSingleWordEditMenu.transform.Find("btnSenToArchive").GetComponent<Button>().onClick.AddListener(() => { Debug.Log("sent to archive"); });
+        cloneSingleWordEditMenu.transform.Find("btnSendToArchive").GetComponent<Button>().onClick.AddListener(() => {
+
+            displayedWord.archive = true;          
+            libraryToLearn.words.Remove(displayedWord);//remove from screen           
+            Save.saveSingleLibrary(libraryToLearn);// resave
+
+            alertWarning.generalWarning(prefabGeneralCompleted, canvas, "The Word was successfully sent to archive.");
+            //renew the count of the librarToLearn on the screen
+            nextWord();
+            previousWord();
+            //close the menu
+            DestroyImmediate(cloneSingleWordEditMenu);
+        });
 
         cloneSingleWordEditMenu.transform.Find("btnReset").GetComponent<Button>().onClick.AddListener(() => { Debug.Log("Reseted"); });
 

@@ -277,7 +277,7 @@ public class Importing : MonoBehaviour
 
             //===============saving====================          
             // all library are saved by its name         
-            Save.savetheLibrary(lib);
+            Save.saveSingleLibrary(lib);
                 //PlayerPrefs.SetString(lib.name, JsonConvert.SerializeObject(lib));
 
             //remove the libraries from libraryList because this library is converted a file in device

@@ -36,7 +36,7 @@ public class Update : MonoBehaviour
         //the updated allLibrariesInfo is stored
         Save.saveListAllLibrariesInfo(allLibrariesInfo);
         //the updated library is stored
-        Save.savetheLibrary(theLibrary);
+        Save.saveSingleLibrary(theLibrary);
 
         return true;
     }
@@ -56,7 +56,7 @@ public class Update : MonoBehaviour
         library.words[index] = newword;
         
         //save library again
-        Save.savetheLibrary(library);
+        Save.saveSingleLibrary(library);
     }
   
 }

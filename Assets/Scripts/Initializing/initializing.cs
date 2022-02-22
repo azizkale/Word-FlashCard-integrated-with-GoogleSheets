@@ -46,7 +46,7 @@ public class initializing : MonoBehaviour
         lib.wordsCount = wordsList.Count;
         lib.words = wordsList;
 
-        Save.savetheLibrary(lib);
+        Save.saveSingleLibrary(lib);
 
         //creating info about the sample library
         libInfo.name = "Sample Library";

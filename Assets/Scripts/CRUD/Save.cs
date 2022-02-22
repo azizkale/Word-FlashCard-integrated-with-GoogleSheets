@@ -9,8 +9,18 @@ public class Save : MonoBehaviour
         PlayerPrefs.SetString("allLibrariesInfo", JsonConvert.SerializeObject(allLibrariesInfo));
     }
 
-    public static void savetheLibrary(Library library)
+    public static void saveSingleLibrary(Library library)
     {
         PlayerPrefs.SetString(library.name, JsonConvert.SerializeObject(library));
+
+        List<AllLibrariesInfo> allLibrariesInfo = Read.getListAllLibrariesInfo();
+
+        AllLibrariesInfo libinfo = allLibrariesInfo.Find(libi => libi.name == library.name);
+
+        libinfo.name = library.name;
+        libinfo.wordsCount = library.words.Count;
+        libinfo.language = library.language;
+
+        saveListAllLibrariesInfo(allLibrariesInfo);
     }
 }

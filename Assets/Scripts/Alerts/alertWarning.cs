@@ -50,4 +50,12 @@ public class alertWarning : MonoBehaviour
         cloneGo.transform.Find("Body").transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text = warningText;
         cloneGo.transform.Find("Body").transform.Find("btnCancel").GetComponent<Button>().onClick.AddListener(() => { DestroyImmediate(cloneGo); });
     }
+
+    public static void generalCompleted(GameObject go, GameObject canvas, string warningText)
+    {
+        GameObject cloneGo = Instantiate(go, canvas.transform.position, Quaternion.identity, canvas.transform);
+        cloneGo.transform.Find("Body").transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text = warningText;
+        cloneGo.transform.Find("Body").transform.Find("btnCancel").GetComponent<Button>().onClick.AddListener(() => { DestroyImmediate(cloneGo); });
+    }
+
 }
