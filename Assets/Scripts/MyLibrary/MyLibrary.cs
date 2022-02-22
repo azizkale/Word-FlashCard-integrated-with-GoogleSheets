@@ -19,9 +19,10 @@ public class MyLibrary : MonoBehaviour
     }
 
     public void createFileNamesCards()
-    {        
+    {
 
-        Library theLibrary = JsonConvert.DeserializeObject<Library>(PlayerPrefs.GetString(CommonVariables.libraryName));
+        Library theLibrary = Read.getLibraryContentWithoutArchive(CommonVariables.libraryName);
+            //JsonConvert.DeserializeObject<Library>(PlayerPrefs.GetString(CommonVariables.libraryName));
 
         foreach (Word word in theLibrary.words)
         {

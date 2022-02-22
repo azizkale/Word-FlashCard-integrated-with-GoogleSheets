@@ -46,6 +46,8 @@ public class TrainingWithFlashCard : MonoBehaviour
         startButton.gameObject.SetActive(false);
         showTheWordsOnTheTurningCard(0);
         displayWordNumber(libraryToLearn, index);
+        //edit button displays just when the flashCard starts
+        btnSingleWordEditMenu.SetActive(true);
     }
 
     private void showTheWordsOnTheTurningCard(int indx)

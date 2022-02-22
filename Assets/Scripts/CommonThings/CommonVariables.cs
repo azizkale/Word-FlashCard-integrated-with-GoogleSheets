@@ -1,12 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
+﻿
 public static class CommonVariables 
 {
-    //public static List<Word> allData = new List<Word>();
-    //public static ArrayList allFileTyps = new ArrayList();
-    public static string libraryName; // to open libarary content scene
-    //public static List<AllLibrariesInfo> allLibrariesInfo = new List<AllLibrariesInfo>(); // it is used at loading saved libraies from device
+    public static string libraryName; // to open libarary content scene   
     //    
     public static Library selectedLibraryContetnt = new Library();
 

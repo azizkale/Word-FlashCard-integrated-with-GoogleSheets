@@ -13,10 +13,15 @@ public class Read : MonoBehaviour
     }
 
     // all libraries are stored just by their names
-    public static Library getLibraryContent(string libraryname)
+    public static Library getLibraryContentWithoutArchive(string libraryname)
     {
-        string sdf = PlayerPrefs.GetString(libraryname);
         Library theLibrary = JsonConvert.DeserializeObject<Library>(PlayerPrefs.GetString(libraryname));
+
+        foreach (Word word in theLibrary.words)
+        {
+            if (word.archive)
+                theLibrary.words.Remove(word);
+        }
         return theLibrary;
     }
 }

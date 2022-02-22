@@ -6,5 +6,6 @@ public class Word
     public string languageFrom;
     public string languageTo;
     public int numberOfSight;
+    public bool archive;
     
 }
