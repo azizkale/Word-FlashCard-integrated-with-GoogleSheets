@@ -163,6 +163,7 @@ MonoBehaviour:
     type: 3}
   scrolContainer: {fileID: 943041452}
   canvas: {fileID: 2089467767}
+  libraryTitle: {fileID: 1929148934}
 --- !u!4 &471344143
 Transform:
   m_ObjectHideFlags: 0
@@ -332,6 +333,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1929148934 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3033258095587805528, guid: 020d0e45d6504204c9348c7f43d19214,
+    type: 3}
+  m_PrefabInstance: {fileID: 3033258095243790115}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2089467767 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3033258095848616491, guid: 020d0e45d6504204c9348c7f43d19214,
@@ -404,6 +411,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3033258094943788964, guid: 020d0e45d6504204c9348c7f43d19214,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3033258094943788964, guid: 020d0e45d6504204c9348c7f43d19214,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3033258094943788964, guid: 020d0e45d6504204c9348c7f43d19214,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 3033258095093490466, guid: 020d0e45d6504204c9348c7f43d19214,
+        type: 3}
+      propertyPath: m_VerticalScrollbar
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3033258095093490909, guid: 020d0e45d6504204c9348c7f43d19214,
         type: 3}

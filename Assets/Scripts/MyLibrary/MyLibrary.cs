@@ -11,10 +11,9 @@ public class MyLibrary : MonoBehaviour
     public GameObject prefabGeneralWarnung;
     public GameObject scrolContainer;
     public GameObject canvas;
+    public GameObject libraryTitle;
 
-    TextMeshProUGUI cardQuestion;
-    TextMeshProUGUI cardAnswer;
-    //public TextMeshProUGUI sceneTitle;
+   
     private Library theLibrary;
     void Start()
     {
@@ -23,21 +22,24 @@ public class MyLibrary : MonoBehaviour
 
     public void createFileNamesCards()
     {
-
-        theLibrary = Read.getLibraryContentWithoutArchive(CommonVariables.libraryName);           
+        theLibrary = Read.getLibraryContentWithoutArchive(CommonVariables.libraryName);
+        libraryTitle.GetComponent<TextMeshProUGUI>().text = CommonVariables.charachterLimit(theLibrary.name, 14);
 
         foreach (Word word in theLibrary.words)
         {
-           GameObject clone = Instantiate(prefabWordsPairCard, scrolContainer.transform.position, Quaternion.identity, scrolContainer.transform) as GameObject;
+           GameObject cloneprefabWordsPairCard = Instantiate(prefabWordsPairCard, scrolContainer.transform.position, Quaternion.identity, scrolContainer.transform) as GameObject;
 
-            cardQuestion = clone.transform.Find("Button").transform.Find("TMP_question").GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI cardQuestion = cloneprefabWordsPairCard.transform.Find("Button").transform.Find("TMP_question").GetComponent<TextMeshProUGUI>();
             cardQuestion.text = CommonVariables.charachterLimit(word.theWord,30);
 
-            cardAnswer = clone.transform.Find("Button").transform.Find("TMP_answer").GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI cardAnswer = cloneprefabWordsPairCard.transform.Find("Button").transform.Find("TMP_answer").GetComponent<TextMeshProUGUI>();
             cardAnswer.text = CommonVariables.charachterLimit(word.meaning,30);
 
-            clone.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => {
+            //select the word-pair
+            cloneprefabWordsPairCard.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => {
                 updateTheWord(word, canvas);
+
+              
             });
         }
     }
@@ -65,7 +67,6 @@ public class MyLibrary : MonoBehaviour
         TextMeshProUGUI textLanguage = cloneprefabupdateword.transform.Find("TopInfo").transform.Find("language").GetComponent<TextMeshProUGUI>();
         textLanguage.text = word.languageFrom + "-" + word.languageTo;
 
-
         //question text
         TMP_InputField inputQ = cloneprefabupdateword.transform.Find("TextField").transform.Find("TMPQuestion").GetComponent<TMP_InputField>();
         inputQ.text = word.theWord;
@@ -74,18 +75,13 @@ public class MyLibrary : MonoBehaviour
         TMP_InputField inputA = cloneprefabupdateword.transform.Find("TextField").transform.Find("TMPAnswer").GetComponent<TMP_InputField>();
         inputA.text = word.meaning;
 
-        //when this is clicked, the text of TMP_InputFileds are updated
+        //UPDATE - when this is clicked, the text of TMP_InputFileds are updated
         cloneprefabupdateword.transform.Find("BottomMenu").transform.Find("btnUpdate").GetComponent<Button>().onClick.AddListener(() => {
             if (!string.IsNullOrEmpty(inputQ.text) && !string.IsNullOrEmpty(inputA.text))
             {
-                Update.updateSingleWord(word, theLibrary, inputQ.text, inputA.text);
-                //chamges the displayWord on the screen
-                word.theWord = inputQ.text;
-                word.meaning = inputA.text;              
-
+                Update.updateSingleWord(word, theLibrary, inputQ.text, inputA.text); 
                 DestroyImmediate(cloneprefabupdateword);
-                alertWarning.completedSuccesfully(prefabCompleteSuccessfully, canvas);
-
+                alertWarning.completedSuccesfully(prefabCompleteSuccessfully, canvas);            
 
             }
             else
