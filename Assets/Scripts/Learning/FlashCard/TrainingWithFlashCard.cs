@@ -174,11 +174,11 @@ public class TrainingWithFlashCard : MonoBehaviour
             textLanguage.text = displayingWord.languageFrom + "-" + displayingWord.languageTo;
 
             //question text
-            TMP_InputField inputQ = cloneprefabupdateword.transform.Find("TMPQuestion").GetComponent<TMP_InputField>();
+            TMP_InputField inputQ = cloneprefabupdateword.transform.Find("TextField").transform.Find("TMPQuestion").GetComponent<TMP_InputField>();
             inputQ.text = displayingWord.theWord;
 
             //answer text
-            TMP_InputField inputA = cloneprefabupdateword.transform.Find("TMPAnswer").GetComponent<TMP_InputField>();
+            TMP_InputField inputA = cloneprefabupdateword.transform.Find("TextField").transform.Find("TMPAnswer").GetComponent<TMP_InputField>();
             inputA.text = displayingWord.meaning;            
             
             //when this is clicked, the text of TMP_InputFileds are updated
