@@ -6,8 +6,12 @@ public class Read : MonoBehaviour
 {
     public static List<AllLibrariesInfo> getListAllLibrariesInfo()
     {
-        List<AllLibrariesInfo> allLibrariesInfo = new List<AllLibrariesInfo>();
-        allLibrariesInfo = JsonConvert.DeserializeObject<List<AllLibrariesInfo>>(PlayerPrefs.GetString("allLibrariesInfo"));
+        List<AllLibrariesInfo> allLibrariesInfo = JsonConvert.DeserializeObject<List<AllLibrariesInfo>>(PlayerPrefs.GetString("allLibrariesInfo"));
+
+        //if(allLibrariesInfo == null)
+        //{
+        //    allLibrariesInfo = new List<AllLibrariesInfo>();
+        //}             
 
         return allLibrariesInfo;
     }

@@ -15,10 +15,10 @@ public class initializing : MonoBehaviour
         //as initializing it was created a string array to store libraries in it
       
         List<AllLibrariesInfo> allLibrariesInfo = new List<AllLibrariesInfo>();
+        Save.saveListAllLibrariesInfo(allLibrariesInfo);
         AllLibrariesInfo libInfo = new AllLibrariesInfo();
         List<Word> wordsList = new List<Word>();
-        Library lib = new Library();
-        PlayerPrefs.SetString("allLibrariesInfo", JsonConvert.SerializeObject(allLibrariesInfo));
+        Library lib = new Library();      
 
         string[] alllines = {
         "German\tEnglish\tWenn du Besuch empfangen kannst, werde ich der erste in der Reihe sein, die Schlange steht.\tIf you can have visitors, I'll be the first in line.",
@@ -46,7 +46,8 @@ public class initializing : MonoBehaviour
         lib.wordsCount = wordsList.Count;
         lib.words = wordsList;
 
-        Save.saveSingleLibrary(lib);
+        PlayerPrefs.SetString(lib.name,JsonConvert.SerializeObject(lib));
+        //Save.saveSingleLibrary(lib);
 
         //creating info about the sample library
         libInfo.name = "Sample Library";
@@ -54,6 +55,7 @@ public class initializing : MonoBehaviour
         libInfo.wordsCount = lib.wordsCount;
 
         allLibrariesInfo.Add(libInfo);
-        Save.saveListAllLibrariesInfo(allLibrariesInfo);        
+        PlayerPrefs.SetString("allLibrariesInfo", JsonConvert.SerializeObject(allLibrariesInfo));
+        //Save.saveListAllLibrariesInfo(allLibrariesInfo);       
     }
 }

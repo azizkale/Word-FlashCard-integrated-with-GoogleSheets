@@ -24,8 +24,7 @@ public class MyLibrary : MonoBehaviour
     public void createFileNamesCards()
     {
 
-        theLibrary = Read.getLibraryContentWithoutArchive(CommonVariables.libraryName);
-            //JsonConvert.DeserializeObject<Library>(PlayerPrefs.GetString(CommonVariables.libraryName));
+        theLibrary = Read.getLibraryContentWithoutArchive(CommonVariables.libraryName);           
 
         foreach (Word word in theLibrary.words)
         {
@@ -58,16 +57,25 @@ public class MyLibrary : MonoBehaviour
         GameObject cloneprefabupdateword = Instantiate(prefabUpdateWord, canvas.transform.position, Quaternion.identity, canvas.transform);
         cloneprefabupdateword.transform.localPosition = Vector3.zero;
 
+        //view Count info
+        TextMeshProUGUI textViewCount = cloneprefabupdateword.transform.Find("TopInfo").transform.Find("ViewCount").GetComponent<TextMeshProUGUI>();
+        textViewCount.text = word.viewCount.ToString();
+
+        //language info
+        TextMeshProUGUI textLanguage = cloneprefabupdateword.transform.Find("TopInfo").transform.Find("language").GetComponent<TextMeshProUGUI>();
+        textLanguage.text = word.languageFrom + "-" + word.languageTo;
+
+
         //question text
-        TMP_InputField inputQ = cloneprefabupdateword.transform.Find("TMPQuestion").GetComponent<TMP_InputField>();
+        TMP_InputField inputQ = cloneprefabupdateword.transform.Find("TextField").transform.Find("TMPQuestion").GetComponent<TMP_InputField>();
         inputQ.text = word.theWord;
 
         //answer text
-        TMP_InputField inputA = cloneprefabupdateword.transform.Find("TMPAnswer").GetComponent<TMP_InputField>();
+        TMP_InputField inputA = cloneprefabupdateword.transform.Find("TextField").transform.Find("TMPAnswer").GetComponent<TMP_InputField>();
         inputA.text = word.meaning;
 
         //when this is clicked, the text of TMP_InputFileds are updated
-        cloneprefabupdateword.transform.Find("btnUpdate").GetComponent<Button>().onClick.AddListener(() => {
+        cloneprefabupdateword.transform.Find("BottomMenu").transform.Find("btnUpdate").GetComponent<Button>().onClick.AddListener(() => {
             if (!string.IsNullOrEmpty(inputQ.text) && !string.IsNullOrEmpty(inputA.text))
             {
                 Update.updateSingleWord(word, theLibrary, inputQ.text, inputA.text);
@@ -84,7 +92,7 @@ public class MyLibrary : MonoBehaviour
                 alertWarning.generalWarning(prefabGeneralWarnung, canvas, "Question and answer fields cannot be left blank!");
         });
 
-        cloneprefabupdateword.transform.Find("btnCancel").GetComponent<Button>().onClick.AddListener(() => {
+        cloneprefabupdateword.transform.Find("BottomMenu").transform.Find("btnCancel").GetComponent<Button>().onClick.AddListener(() => {
             DestroyImmediate(cloneprefabupdateword);
         });
     }
