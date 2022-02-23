@@ -165,6 +165,14 @@ public class TrainingWithFlashCard : MonoBehaviour
             GameObject cloneprefabupdateword = Instantiate(prefabUpdateWord, canvas.transform.position, Quaternion.identity, canvas.transform);
             cloneprefabupdateword.transform.localPosition = Vector3.zero;
 
+            //view Count info
+            TextMeshProUGUI textViewCount = cloneprefabupdateword.transform.Find("TopInfo").transform.Find("ViewCount").GetComponent<TextMeshProUGUI>();
+            textViewCount.text = displayingWord.viewCount.ToString();
+
+            //language info
+            TextMeshProUGUI textLanguage = cloneprefabupdateword.transform.Find("TopInfo").transform.Find("language").GetComponent<TextMeshProUGUI>();
+            textLanguage.text = displayingWord.languageFrom + "-" + displayingWord.languageTo;
+
             //question text
             TMP_InputField inputQ = cloneprefabupdateword.transform.Find("TMPQuestion").GetComponent<TMP_InputField>();
             inputQ.text = displayingWord.theWord;
@@ -174,7 +182,7 @@ public class TrainingWithFlashCard : MonoBehaviour
             inputA.text = displayingWord.meaning;            
             
             //when this is clicked, the text of TMP_InputFileds are updated
-            cloneprefabupdateword.transform.Find("btnUpdate").GetComponent<Button>().onClick.AddListener(() => {
+            cloneprefabupdateword.transform.Find("BottomMenu").transform.Find("btnUpdate").GetComponent<Button>().onClick.AddListener(() => {
                 if (!string.IsNullOrEmpty(inputQ.text) && !string.IsNullOrEmpty(inputA.text))
                 {
                     Update.updateSingleWord(displayingWord, libraryToLearn, inputQ.text, inputA.text);
@@ -196,7 +204,7 @@ public class TrainingWithFlashCard : MonoBehaviour
                     alertWarning.generalWarning(prefabGeneralWarnung, canvas, "Question and answer fields cannot be left blank!");                
             });
 
-            cloneprefabupdateword.transform.Find("btnCancel").GetComponent<Button>().onClick.AddListener(() => { 
+            cloneprefabupdateword.transform.Find("BottomMenu").transform.Find("btnCancel").GetComponent<Button>().onClick.AddListener(() => { 
                 DestroyImmediate(cloneprefabupdateword);
                 DestroyImmediate(cloneSingleWordEditMenu);
                 btnSingleWordEditMenu.gameObject.SetActive(true);
