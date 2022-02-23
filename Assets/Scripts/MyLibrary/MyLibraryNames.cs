@@ -22,7 +22,7 @@ public class MyLibraryNames : MonoBehaviour
     {
         //initializing control
         if (Read.getListAllLibrariesInfo() == null)
-        {
+        {          
             initializing.initializingtheapp();
             SceneManager.LoadScene("MyLibraryNames");
         }

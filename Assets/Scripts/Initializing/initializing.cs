@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class initializing : MonoBehaviour
@@ -6,7 +7,6 @@ public class initializing : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        initializingtheapp();
     }
 
     public static void initializingtheapp()
@@ -17,9 +17,9 @@ public class initializing : MonoBehaviour
         List<AllLibrariesInfo> allLibrariesInfo = new List<AllLibrariesInfo>();
         AllLibrariesInfo libInfo = new AllLibrariesInfo();
         List<Word> wordsList = new List<Word>();
-        Library lib = new Library();          
+        Library lib = new Library();
+        PlayerPrefs.SetString("allLibrariesInfo", JsonConvert.SerializeObject(allLibrariesInfo));
 
-          
         string[] alllines = {
         "German\tEnglish\tWenn du Besuch empfangen kannst, werde ich der erste in der Reihe sein, die Schlange steht.\tIf you can have visitors, I'll be the first in line.",
             "German\tEnglish\tSie hat es mich gebeten, dich zu grüßen.\tShe asked me to greet you.",
