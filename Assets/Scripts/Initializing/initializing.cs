@@ -5,8 +5,8 @@ public class initializing : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
-    {        
-
+    {
+        initializingtheapp();
     }
 
     public static void initializingtheapp()
