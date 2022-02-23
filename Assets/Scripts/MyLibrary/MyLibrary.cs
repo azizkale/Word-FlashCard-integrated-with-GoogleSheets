@@ -35,7 +35,7 @@ public class MyLibrary : MonoBehaviour
             TextMeshProUGUI answerOnPrefab = cloneprefabWordsPairCard.transform.Find("Button").transform.Find("TMP_answer").GetComponent<TextMeshProUGUI>();
             answerOnPrefab.text = CommonVariables.charachterLimit(word.meaning,30);
 
-            //select the word-pair (BUTTON)
+            //the word-pair (select BUTTON)
             cloneprefabWordsPairCard.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => {
 
                 GameObject cloneprefabupdateword = Instantiate(prefabUpdateWord, canvas.transform.position, Quaternion.identity, canvas.transform);
@@ -96,8 +96,5 @@ public class MyLibrary : MonoBehaviour
         }
         else
             alertWarning.generalWarning(prefabGeneralWarnung, canvas, "Question and answer fields cannot be left blank!");
-     
-
-      
     }
 }
