@@ -68,22 +68,29 @@ public class TrainingWithFlashCard : MonoBehaviour
 
     public void nextWord()
     {
-        if (index < libraryToLearn.wordsCount - 1)
+        if (index < libraryToLearn.wordsCount - 1 && libraryToLearn.words.Count > 1)
         {
             index++;
             showTheWordsOnTheTurningCard(index);           
         }
-
+        else
+        {
+            showTheWordsOnTheTurningCard(0);
+        }
         btnNextInteractablitiyControl(btnNext,btnPrevious,index);
         displayWordNumber(libraryToLearn, index);
     }
 
     public void previousWord()
     {
-        if (index > 0)
+        if (index > 0 && libraryToLearn.words.Count > 1)
         {
             index--;
             showTheWordsOnTheTurningCard(index);
+        }
+        else
+        {
+            showTheWordsOnTheTurningCard(0);
         }
         btnPreviuosInteractablitiyControl(btnNext, btnPrevious, index);
         displayWordNumber(libraryToLearn, index);
