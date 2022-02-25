@@ -34,8 +34,7 @@ public class JsonData : MonoBehaviour
 
     public void getDataFromGoogle()
     {
-        clonePrefabLoading = Instantiate(prefabLoading, canvas.transform.position, Quaternion.identity, canvas.transform) as GameObject;
-
+        Loading();
         string url = "";
         //givename-card to the creating file
         GameObject clonePrefabGetUrl = Instantiate(prefabGetUrl, canvas.transform.position, Quaternion.identity, canvas.transform) as GameObject;
@@ -65,8 +64,6 @@ public class JsonData : MonoBehaviour
 
     IEnumerator GetRequest(string uri)
     {
-       
-
         using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
         {
             // Request and wait for the desired page.
@@ -146,9 +143,6 @@ public class JsonData : MonoBehaviour
 
     void createSelectLanguageMenu()
     {
-       
-
-
         GameObject clonePrefabIportFileMenu = Instantiate(prefabIportFileMenu, canvas.transform.position, Quaternion.identity, canvas.transform) as GameObject;
         //
         clonePrefabIportFileMenu.transform.Find("Scroll View").transform.position = canvas.transform.position;
@@ -331,6 +325,10 @@ public class JsonData : MonoBehaviour
         }
     }
 
+    private void Loading()
+    {
+        clonePrefabLoading = Instantiate(prefabLoading, canvas.transform.position, Quaternion.identity, canvas.transform) as GameObject;
+    }
 }
 
 
