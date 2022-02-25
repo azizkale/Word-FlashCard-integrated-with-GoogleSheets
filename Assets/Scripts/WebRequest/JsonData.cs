@@ -33,21 +33,20 @@ public class JsonData : MonoBehaviour
     {
 
         // A correct website page.
-        GetRequest("http://docs.google.com/spreadsheets/d/1x2mVarvh6yopqX67QV7l-ttfblzZJLmVC40sXKdVKuE/gviz/tq?");
+        StartCoroutine(GetRequest("http://docs.google.com/spreadsheets/d/1x2mVarvh6yopqX67QV7l-ttfblzZJLmVC40sXKdVKuE/gviz/tq?"));
 
-        // A non-existing page.
-       GetRequest("http://docs.google.com/spreadsheets/d/1x2mVarvh6yopqX67QV7l-ttfblzZJLmVC40sXKdVKuE/gviz/tq?");
+       // // A non-existing page.
+       //GetRequest("http://docs.google.com/spreadsheets/d/1x2mVarvh6yopqX67QV7l-ttfblzZJLmVC40sXKdVKuE/gviz/tq?");
 
-        StartCoroutine(createlibrariesListByUsingImportedFile());
-        createSelectLanguageMenu();
+       
     }
 
-    void GetRequest(string uri)
+    IEnumerator GetRequest(string uri)
     {      
         using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
         {
             // Request and wait for the desired page.
-           webRequest.SendWebRequest();
+          yield return webRequest.SendWebRequest();
 
             string[] pages = uri.Split('/');
             int page = pages.Length - 1;
@@ -90,6 +89,8 @@ public class JsonData : MonoBehaviour
                 break;
             }
         }
+        StartCoroutine(createlibrariesListByUsingImportedFile());
+        createSelectLanguageMenu();
     }
 
     IEnumerator createlibrariesListByUsingImportedFile()

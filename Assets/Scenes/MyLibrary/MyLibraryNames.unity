@@ -857,6 +857,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdd85f0048f71624da87f52b12d07606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabIportFileMenu: {fileID: 863684900454293873, guid: 6508185e208a7bf40bb399ffd6406544,
+    type: 3}
+  prefabGiveName: {fileID: 3573284390164215229, guid: 433c2ce60cfe804458b63d5aebb7aefe,
+    type: 3}
+  prefabAlertWarning: {fileID: 7866630584525647786, guid: 42f7e39e74c3fbb45b375aa5f003efce,
+    type: 3}
+  prefabselectLibraryBackground: {fileID: 1375485174995012607, guid: a33eb9afa345298418c294cb07dae87c,
+    type: 3}
+  prefabselectLibraryButton: {fileID: 3605527509389082870, guid: 65976448b59b06742a0b5fc710caba9b,
+    type: 3}
+  prefabLanguageCard: {fileID: 5335306274766175664, guid: 76f90790855888a4eba6386c02095830,
+    type: 3}
+  canvas: {fileID: 353994492}
 --- !u!1001 &1279380584
 PrefabInstance:
   m_ObjectHideFlags: 0
