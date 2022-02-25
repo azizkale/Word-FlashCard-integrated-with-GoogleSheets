@@ -22,8 +22,10 @@ public class JsonData : MonoBehaviour
     public GameObject prefabselectLibraryBackground;
     public GameObject prefabselectLibraryButton;
     public GameObject prefabLanguageCard;
+    public GameObject prefabLoading;
     public GameObject canvas;
 
+    GameObject clonePrefabLoading;
     void Start()
     {
         
@@ -32,6 +34,8 @@ public class JsonData : MonoBehaviour
 
     public void getDataFromGoogle()
     {
+        clonePrefabLoading = Instantiate(prefabLoading, canvas.transform.position, Quaternion.identity, canvas.transform) as GameObject;
+
         string url = "";
         //givename-card to the creating file
         GameObject clonePrefabGetUrl = Instantiate(prefabGetUrl, canvas.transform.position, Quaternion.identity, canvas.transform) as GameObject;
@@ -60,7 +64,9 @@ public class JsonData : MonoBehaviour
     }
 
     IEnumerator GetRequest(string uri)
-    {      
+    {
+       
+
         using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
         {
             // Request and wait for the desired page.
@@ -108,6 +114,9 @@ public class JsonData : MonoBehaviour
             }
         }
         StartCoroutine(createlibrariesListByUsingImportedFile());
+
+    
+
         createSelectLanguageMenu();
     }
 
@@ -137,9 +146,13 @@ public class JsonData : MonoBehaviour
 
     void createSelectLanguageMenu()
     {
-       GameObject clonePrefabIportFileMenu = Instantiate(prefabIportFileMenu, canvas.transform.position, Quaternion.identity, canvas.transform) as GameObject;
+       
+
+
+        GameObject clonePrefabIportFileMenu = Instantiate(prefabIportFileMenu, canvas.transform.position, Quaternion.identity, canvas.transform) as GameObject;
         //
         clonePrefabIportFileMenu.transform.Find("Scroll View").transform.position = canvas.transform.position;
+        DestroyImmediate(clonePrefabLoading);
 
         //CreateNewLibrary-button
         clonePrefabIportFileMenu.transform.Find("Footer").transform.Find("btn_CreateNewLibrary").GetComponent<Button>().onClick.AddListener(() => {

@@ -1012,6 +1012,8 @@ MonoBehaviour:
     type: 3}
   prefabLanguageCard: {fileID: 5335306274766175664, guid: 76f90790855888a4eba6386c02095830,
     type: 3}
+  prefabLoading: {fileID: 7572401644055378791, guid: 9da57a23a91361747a622f2656338881,
+    type: 3}
   canvas: {fileID: 353994492}
 --- !u!1001 &1279380584
 PrefabInstance:
