@@ -113,8 +113,6 @@ public class JsonData : MonoBehaviour
 
     IEnumerator createlibrariesListByUsingImportedFile()
     {
-       
-
         foreach (Word word in wordList)
         {
             string name = word.languageFrom + "-" + word.languageTo;
