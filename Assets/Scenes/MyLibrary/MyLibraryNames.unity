@@ -747,6 +747,7 @@ GameObject:
   - component: {fileID: 1097406873}
   - component: {fileID: 1097406875}
   - component: {fileID: 1097406877}
+  - component: {fileID: 1097406878}
   m_Layer: 0
   m_Name: MainControl
   m_TagString: Untagged
@@ -844,6 +845,18 @@ MonoBehaviour:
     type: 3}
   prefabAlertWarning: {fileID: 7866630584525647786, guid: 42f7e39e74c3fbb45b375aa5f003efce,
     type: 3}
+--- !u!114 &1097406878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1097406872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdd85f0048f71624da87f52b12d07606, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1279380584
 PrefabInstance:
   m_ObjectHideFlags: 0
