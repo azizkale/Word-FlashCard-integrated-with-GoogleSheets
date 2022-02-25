@@ -16,6 +16,7 @@ public class JsonData : MonoBehaviour
     List<GameObject> listClonePrefabLanguageCard = new List<GameObject>();
 
     public GameObject prefabIportFileMenu;
+    public GameObject prefabGetUrl;
     public GameObject prefabGiveName;
     public GameObject prefabAlertWarning;
     public GameObject prefabselectLibraryBackground;
@@ -31,14 +32,31 @@ public class JsonData : MonoBehaviour
 
     public void getDataFromGoogle()
     {
+        string url = "";
+        //givename-card to the creating file
+        GameObject clonePrefabGetUrl = Instantiate(prefabGetUrl, canvas.transform.position, Quaternion.identity, canvas.transform) as GameObject;
 
-        // A correct website page.
-        StartCoroutine(GetRequest("http://docs.google.com/spreadsheets/d/1x2mVarvh6yopqX67QV7l-ttfblzZJLmVC40sXKdVKuE/gviz/tq?"));
+        //OK button on the prefabGiveName
+        clonePrefabGetUrl.transform.Find("btn_OK").GetComponent<Button>().onClick.AddListener(() => {
 
-       // // A non-existing page.
-       //GetRequest("http://docs.google.com/spreadsheets/d/1x2mVarvh6yopqX67QV7l-ttfblzZJLmVC40sXKdVKuE/gviz/tq?");
+            string sheetLink = clonePrefabGetUrl.transform.Find("InputField (TMP)").transform.Find("Text Area").transform.Find("Text").GetComponent<TextMeshProUGUI>().text;
 
-       
+            //to get google-sheet id
+            string[] seperatedLink = sheetLink.Split('/');
+
+            url = "http://docs.google.com/spreadsheets/d/"+ seperatedLink[5]+"/gviz/tq?";
+
+            // A correct website page.
+            StartCoroutine(GetRequest(url));
+
+            DestroyImmediate(clonePrefabGetUrl);           
+        });
+
+        //CANCEL button on the prefabGiveName
+        clonePrefabGetUrl.transform.Find("btn_Cancel").GetComponent<Button>().onClick.AddListener(() => {
+            DestroyImmediate(clonePrefabGetUrl);
+        });
+
     }
 
     IEnumerator GetRequest(string uri)
