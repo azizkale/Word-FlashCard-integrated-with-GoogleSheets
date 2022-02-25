@@ -73,7 +73,7 @@ public class Importing : MonoBehaviour
     }  
 
   // create files using loaded file according to different languages it has
-  List<(Library lib, string libname)> createlibrariesListByUsingImportedFile()
+   List<(Library lib, string libname)> createlibrariesListByUsingImportedFile()
     {
         libraryList.Clear();
         foreach (Word word in wordsList)
@@ -100,7 +100,7 @@ public class Importing : MonoBehaviour
         return libraryList;      
     }
 
-    private void createSelectLanguageMenu()
+   private void createSelectLanguageMenu()
     {
         clonePrefabIportFileMenu = Instantiate(prefabIportFileMenu, canvas.transform.position, Quaternion.identity, canvas.transform) as GameObject;
         //
