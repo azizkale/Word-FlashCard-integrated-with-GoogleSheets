@@ -11,7 +11,7 @@ public class Read : MonoBehaviour
         return allLibrariesInfo;
     }
 
-    // all libraries are stored just by their names
+    //all libraries are stored just by their names
     public static Library getLibraryContentWithoutArchive(string libraryname)
     {
         Library theLibrary = JsonConvert.DeserializeObject<Library>(PlayerPrefs.GetString(libraryname));
@@ -21,5 +21,5 @@ public class Read : MonoBehaviour
         return theLibrary;
     }
 
-
+  
 }

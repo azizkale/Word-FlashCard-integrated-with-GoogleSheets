@@ -1,5 +1,3 @@
-using Newtonsoft.Json;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -40,27 +38,9 @@ public class SubMenu_OnMyLibrariesNames : MonoBehaviour
 
 
             if (PlayerPrefs.GetString(newname) == "" && newname.Length > 1 && newname != null)
-            {
-                //calls the the list allLibrariesInfo
-                List<AllLibrariesInfo> allLibrariesInfo = JsonConvert.DeserializeObject<List<AllLibrariesInfo>>(PlayerPrefs.GetString("allLibrariesInfo"));
-
-                //calls the library from the device by its old name
-                Library callinglab = JsonConvert.DeserializeObject<Library>(PlayerPrefs.GetString(lab.name));
-
-                //finds the library which is wanted to manipulate
-                AllLibrariesInfo infoOfTheLibrary = allLibrariesInfo.Find(i => i.name == lab.name);
-
-                //changes the name of the library
-                infoOfTheLibrary.name = newname;
-
-                //re-saved the allLibrariesInfo in the device
-                PlayerPrefs.SetString("allLibrariesInfo", JsonConvert.SerializeObject(allLibrariesInfo));
-
-                //delete the the library from device at first
-                PlayerPrefs.DeleteKey(lab.name);
-
-                // and re-saved the library by its new name (newname)
-                PlayerPrefs.SetString(newname, JsonConvert.SerializeObject(callinglab));
+            {               
+                //and re-saved the library by its new name (newname)
+                Update.renameLibrary(lab, newname);
 
                 //closes submenu
                 DestroyImmediate(clonesubmenu);

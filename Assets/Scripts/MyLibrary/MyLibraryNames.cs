@@ -30,7 +30,6 @@ public class MyLibraryNames : MonoBehaviour
         {
             allLibrariesInfo = Read.getListAllLibrariesInfo();
             createFileNamesCards();
-
         }
     }
 
@@ -86,7 +85,7 @@ public class MyLibraryNames : MonoBehaviour
         //rename-button
         cloneSubMenu.transform.Find("btn_Rename").GetComponent<Button>().onClick.AddListener(() =>
         {
-            SubMenu_OnMyLibrariesNames.rename(prefabSubMenu_RenameFunction, cloneSubMenu, prefabAlertWarning, lab,canvas);
+            SubMenu_OnMyLibrariesNames.rename(prefabSubMenu_RenameFunction, cloneSubMenu, prefabAlertWarning, lab, canvas);
         });
 
         //delete-button
