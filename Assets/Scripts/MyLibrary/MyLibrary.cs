@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -14,7 +15,9 @@ public class MyLibrary : MonoBehaviour
     public GameObject libraryTitle;
 
    
-    private Library theLibrary;   
+    private Library theLibrary;
+    private List<GameObject> listToManupulateWords = new List<GameObject>();   
+
     void Start()
     {
         createFileNamesCards();
@@ -39,7 +42,7 @@ public class MyLibrary : MonoBehaviour
 
             //Toggle on the word-pair ()
             cloneprefabWordsPairCard.transform.Find("Toggle").GetComponent<Toggle>().onValueChanged.AddListener((val) => {
-                
+                listToManupulateWords.Add(cloneprefabWordsPairCard);
             });
 
             //the word-pair (select BUTTON)
@@ -106,9 +109,12 @@ public class MyLibrary : MonoBehaviour
             alertWarning.generalWarning(prefabGeneralWarnung, canvas, "Question and answer fields cannot be left blank!");
     }
 
-    private void deleteTheSelectedWords()
+    public void deleteTheSelectedWords()
     {
-
+        foreach (GameObject wordpair in listToManupulateWords)
+        {
+            GameObject go = wordpair;
+        }
     }
 
 }

@@ -7,13 +7,14 @@ public class MyLibraryMenu : MonoBehaviour
     public GameObject menuObject;
     void Start()
     {
-       
     }
 
     public void openMenu()
     {
         StartCoroutine(menuopen());      
         menuObject.transform.Find("btn_Close").gameObject.SetActive(true);
+        //to cannot to be pressed the button while it is already open
+        menuObject.transform.Find("btn_Open").GetComponent<Button>().interactable = false;
     }
 
     IEnumerator menuopen()
@@ -29,7 +30,7 @@ public class MyLibraryMenu : MonoBehaviour
 
         float theValThatAddedToVecY = height - heightbtn;
 
-        for (int i = 0; i <= theValThatAddedToVecY; i = i + 40)
+        for (int i = 0; i <= theValThatAddedToVecY; i = i + 100)
         {
             menuObject.transform.localPosition = new Vector3(0, vec.y + i, 0);
             yield return new WaitForSeconds(0.000001f);
@@ -44,6 +45,7 @@ public class MyLibraryMenu : MonoBehaviour
     {
         StartCoroutine(menuclose());
         menuObject.transform.Find("btn_Close").gameObject.SetActive(false);
+        menuObject.transform.Find("btn_Open").GetComponent<Button>().interactable = true;
     }
 
     IEnumerator menuclose()
@@ -59,11 +61,16 @@ public class MyLibraryMenu : MonoBehaviour
 
         float theValThatAddedToVecY = -height + heightbtn;
 
-        for (float i = 0; i > theValThatAddedToVecY; i = i - 40)
+        for (float i = 0; i > theValThatAddedToVecY; i = i - 100)
         {
             menuObject.transform.localPosition = new Vector3(0, vec.y + i, 0);
             yield return new WaitForSeconds(0.000001f);
         }
         yield return menuObject.transform.localPosition = new Vector3(0, vec.y + theValThatAddedToVecY, 0);
     }
+
+    //public static void deleteSelectedWords()
+    //{
+
+    //}
 }
