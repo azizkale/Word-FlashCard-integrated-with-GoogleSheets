@@ -59,9 +59,7 @@ public class SubMenu_OnMyLibrariesNames : MonoBehaviour
    public static void delete(AllLibrariesInfo singlelibraryInfo, GameObject canvas, GameObject prefabDeleteCard)
     {
         GameObject cloneDeleteCard = Instantiate(prefabDeleteCard, canvas.transform.position, Quaternion.identity, canvas.transform);
-        cloneDeleteCard.transform.localScale = Vector3.one;
-
-        //cloneDeleteCard.transform.Find("Header").transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text = "Plase type " + singlelibraryInfo.name + " to confirm";
+        cloneDeleteCard.transform.localScale = Vector3.one;     
 
         TextMeshProUGUI libraryname = cloneDeleteCard.transform.Find("InputField (TMP)").transform.Find("Text Area").transform.Find("Text").GetComponent<TextMeshProUGUI>();
 
@@ -69,8 +67,7 @@ public class SubMenu_OnMyLibrariesNames : MonoBehaviour
             DestroyImmediate(cloneDeleteCard);
         });
             cloneDeleteCard.transform.Find("btn_OK").GetComponent<Button>().onClick.AddListener(() => {
-            //if (libraryname.text == singlelibraryInfo.name || libraryname.text == "Sample Library")
-            //{
+           
                 //at first info about library are deleted and re-saved
                 Delete.deleteFromAllLibrariesInfo(singlelibraryInfo);
 
@@ -79,9 +76,7 @@ public class SubMenu_OnMyLibrariesNames : MonoBehaviour
 
                 //reloads to scene to reload the libraries with the new name
                 SceneManager.LoadScene("MyLibraryNames");
-            //}
-            //else
-            //    cloneDeleteCard.transform.Find("Header").transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>().color = Color.red;
+           
         });
 
        

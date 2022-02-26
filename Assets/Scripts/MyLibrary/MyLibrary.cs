@@ -92,7 +92,14 @@ public class MyLibrary : MonoBehaviour
 
     }
 
-    private void updateTheWord(Word word, GameObject canvas, GameObject cloneprefabupdateword, TMP_InputField inputA, TMP_InputField inputQ, GameObject cloneprefabWordsPairCard)
+    private void updateTheWord(
+        Word word, 
+        GameObject canvas, 
+        GameObject cloneprefabupdateword, 
+        TMP_InputField inputA, 
+        TMP_InputField inputQ, 
+        GameObject cloneprefabWordsPairCard
+        )
     {
         if (!string.IsNullOrEmpty(inputQ.text) && !string.IsNullOrEmpty(inputA.text))
         {
@@ -119,4 +126,14 @@ public class MyLibrary : MonoBehaviour
         SceneManager.LoadScene("LibraryContent");
     }
 
+    public void sendToArchieve()
+    {
+        foreach (Word word in listToManupulateWords)
+        {
+            word.archive = true;
+            Save.saveSingleLibrary(theLibrary);// resave
+        }
+        //reload the scene after deleting
+        SceneManager.LoadScene("LibraryContent");
+    }
 }

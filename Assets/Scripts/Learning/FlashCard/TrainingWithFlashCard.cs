@@ -36,22 +36,20 @@ public class TrainingWithFlashCard : MonoBehaviour
     {
         //picks the library content up by showing "SelectLibrary" menu
         //Library and its content goes to  CommonVariables.selectedLibraryContetnt
-        SelectLibrarMenu.createSelectMenu(canvas, prefabselectLibraryBackground, prefabselectLibraryButton);
-
-       
+        SelectLibrarMenu.createSelectMenu(canvas, prefabselectLibraryBackground, prefabselectLibraryButton);      
     }
 
     public void startTurningFlashCardLearning()
     {
         libraryToLearn = sortTheWordList(CommonVariables.selectedLibraryContetnt);
         startButton.gameObject.SetActive(false);
-        showTheWordsOnTheTurningCard(0);
+        showTheWordsOnTheTurningCard();
         displayWordNumber(libraryToLearn, index);
         //edit button displays just when the flashCard starts
         btnSingleWordEditMenu.SetActive(true);
     }
 
-    private void showTheWordsOnTheTurningCard(int indx)
+    private void showTheWordsOnTheTurningCard()
     {
         displayingWord = libraryToLearn.words[index];
 
@@ -71,11 +69,11 @@ public class TrainingWithFlashCard : MonoBehaviour
         if (index < libraryToLearn.wordsCount - 1 && libraryToLearn.words.Count > 1)
         {
             index++;
-            showTheWordsOnTheTurningCard(index);           
+            showTheWordsOnTheTurningCard();           
         }
         else
         {
-            showTheWordsOnTheTurningCard(0);
+            showTheWordsOnTheTurningCard();
         }
         btnNextInteractablitiyControl(btnNext,btnPrevious,index);
         displayWordNumber(libraryToLearn, index);
@@ -86,11 +84,11 @@ public class TrainingWithFlashCard : MonoBehaviour
         if (index > 0 && libraryToLearn.words.Count > 1)
         {
             index--;
-            showTheWordsOnTheTurningCard(index);
+            showTheWordsOnTheTurningCard();
         }
         else
         {
-            showTheWordsOnTheTurningCard(0);
+            showTheWordsOnTheTurningCard();
         }
         btnPreviuosInteractablitiyControl(btnNext, btnPrevious, index);
         displayWordNumber(libraryToLearn, index);
