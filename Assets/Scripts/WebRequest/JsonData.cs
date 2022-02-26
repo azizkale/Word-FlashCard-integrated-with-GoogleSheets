@@ -1,6 +1,7 @@
 using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -27,8 +28,7 @@ public class JsonData : MonoBehaviour
 
     GameObject clonePrefabLoading;
     void Start()
-    {
-        
+    {       
 
     }
 
@@ -49,6 +49,7 @@ public class JsonData : MonoBehaviour
 
             url = "http://docs.google.com/spreadsheets/d/"+ seperatedLink[5]+"/gviz/tq?";
 
+
             // A correct website page.
             StartCoroutine(GetRequest(url));
 
@@ -64,57 +65,57 @@ public class JsonData : MonoBehaviour
 
     IEnumerator GetRequest(string uri)
     {
-        using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
+        UnityWebRequest webRequest = null;
+       
+        webRequest = UnityWebRequest.Get(uri);
+        // Request and wait for the desired page.
+        yield return webRequest.SendWebRequest();
+
+        string[] pages = uri.Split('/');
+        int page = pages.Length - 1;
+
+        switch (webRequest.result)
         {
-            // Request and wait for the desired page.
-          yield return webRequest.SendWebRequest();
+            case UnityWebRequest.Result.ConnectionError:
+            case UnityWebRequest.Result.DataProcessingError:
+                Debug.LogError(pages[page] + ": Error: " + webRequest.error);
+                break;
+            case UnityWebRequest.Result.ProtocolError:
+                Debug.LogError(pages[page] + ": HTTP Error: " + webRequest.error);
+                break;
+            case UnityWebRequest.Result.Success:
 
-            string[] pages = uri.Split('/');
-            int page = pages.Length - 1;
+            string jsonString = "";
+            string str = webRequest.downloadHandler.text.Substring(47);
 
-            switch (webRequest.result)
+            for (int i = 0; i < str.Length - 2; i++)
             {
-                case UnityWebRequest.Result.ConnectionError:
-                case UnityWebRequest.Result.DataProcessingError:
-                    Debug.LogError(pages[page] + ": Error: " + webRequest.error);
-                    break;
-                case UnityWebRequest.Result.ProtocolError:
-                    Debug.LogError(pages[page] + ": HTTP Error: " + webRequest.error);
-                    break;
-                case UnityWebRequest.Result.Success:
+                jsonString += str[i];
+            }                      
 
-                string jsonString = "";
-                string str = webRequest.downloadHandler.text.Substring(47);
+            JObject json = JObject.Parse(jsonString);
 
-                for (int i = 0; i < str.Length - 2; i++)
-                {
-                    jsonString += str[i];
-                }                      
-
-                JObject json = JObject.Parse(jsonString);
-
-                JArray rows = (JArray)json["table"]["rows"];
+            JArray rows = (JArray)json["table"]["rows"];
 
                       
-                foreach (var item in rows)
-                {
-                    Word word = new Word();
-                    word.languageFrom = item["c"][0]["v"].ToString();
-                    word.languageTo = item["c"][1]["v"].ToString();
-                    word.theWord = item["c"][2]["v"].ToString();
-                    word.meaning = item["c"][3]["v"].ToString();
+            foreach (var item in rows)
+            {
+                Word word = new Word();
+                word.languageFrom = item["c"][0]["v"].ToString();
+                word.languageTo = item["c"][1]["v"].ToString();
+                word.theWord = item["c"][2]["v"].ToString();
+                word.meaning = item["c"][3]["v"].ToString();
 
-                    wordList.Add(word);
+                wordList.Add(word);
                             
-                }
-                break;
             }
+            break;
         }
+        
         StartCoroutine(createlibrariesListByUsingImportedFile());
-
-    
-
         createSelectLanguageMenu();
+
+        StopAllCoroutines();
     }
 
     IEnumerator createlibrariesListByUsingImportedFile()
