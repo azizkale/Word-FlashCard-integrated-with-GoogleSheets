@@ -12,45 +12,58 @@ public class MyLibraryMenu : MonoBehaviour
 
     public void openMenu()
     {
-        StartCoroutine(menuopen());
-        menuObject.transform.Find("btn_Close").GetComponent<GameObject>().SetActive(true);
+        StartCoroutine(menuopen());      
+        menuObject.transform.Find("btn_Close").gameObject.SetActive(true);
     }
 
-   
     IEnumerator menuopen()
     {
+        // local position of the bottom menu (menuObject)
+        Vector3 vec = menuObject.transform.localPosition;
+        // height of the bottom menu (menuObject)
         RectTransform rt = (RectTransform)menuObject.transform;
-        float width = rt.rect.width;
         float height = rt.rect.height;
-        if(height < 51f)
+        //height of the open button on the bottom menu
+        RectTransform rtbtn = (RectTransform)menuObject.transform.Find("btn_Open").transform;
+        float heightbtn = rtbtn.rect.height;
+
+        float theValThatAddedToVecY = height - heightbtn;
+
+        for (int i = 0; i <= theValThatAddedToVecY; i = i + 40)
         {
-          for (int i = 1; i <= 10; i++)
-            {
-                rt.sizeDelta = new Vector2(height + 20f * i, width);
-                yield return new WaitForSeconds(0.0000001f);
-            }
+            menuObject.transform.localPosition = new Vector3(0, vec.y + i, 0);
+            yield return new WaitForSeconds(0.000001f);
         }
-      
+        menuObject.transform.localPosition = new Vector3(0, vec.y + theValThatAddedToVecY, 0);
+
+
+
     }
 
     public void closeMenu()
     {
         StartCoroutine(menuclose());
-        menuObject.transform.Find("btn_Close").GetComponent<GameObject>().SetActive(false);
-
+        menuObject.transform.Find("btn_Close").gameObject.SetActive(false);
     }
 
     IEnumerator menuclose()
     {
+        // local position of the bottom menu (menuObject)
+        Vector3 vec = menuObject.transform.localPosition;
+        // height of the bottom menu (menuObject)
         RectTransform rt = (RectTransform)menuObject.transform;
-        float width = rt.rect.width;
         float height = rt.rect.height;
+        //height of the open button on the bottom menu
+        RectTransform rtbtn = (RectTransform)menuObject.transform.Find("btn_Open").transform;
+        float heightbtn = rtbtn.rect.height;
 
-        //for (int i = 1; i <= 10; i++)
-        //{
-        //    rt.sizeDelta = new Vector2(height - 20f * i, width);
-        //    yield return new WaitForSeconds(0.0000001f);
-        //}
-        yield return rt.sizeDelta = new Vector2(50f, width);
+        float theValThatAddedToVecY = -height + heightbtn;
+
+        for (float i = 0; i > theValThatAddedToVecY; i = i - 40)
+        {
+            menuObject.transform.localPosition = new Vector3(0, vec.y + i, 0);
+            yield return new WaitForSeconds(0.000001f);
+        }
+        yield return menuObject.transform.localPosition = new Vector3(0, vec.y + theValThatAddedToVecY, 0);
     }
 }
