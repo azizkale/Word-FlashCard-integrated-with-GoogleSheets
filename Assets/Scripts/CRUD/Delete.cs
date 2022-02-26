@@ -18,4 +18,11 @@ public class Delete : MonoBehaviour
     {
         PlayerPrefs.DeleteKey(singlelibraryinfo.name);
     }
+
+    public static void deleteSingleWord(Word word, Library library)
+    {
+        library.words.Remove(word);
+        Save.saveSingleLibrary(library);
+       
+    }
 }

@@ -58,5 +58,13 @@ public class Update : MonoBehaviour
         //save library again
         Save.saveSingleLibrary(library);
     }
- 
+
+    public static void renameLibrary(Library library, string newName)
+    {
+
+    }
+    public static void updateSingleLibrary(Library oldlibrary, Library newlibrary)
+    {
+
+    }
 }

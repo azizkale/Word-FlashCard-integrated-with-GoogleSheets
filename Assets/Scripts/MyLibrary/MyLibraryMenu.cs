@@ -68,9 +68,4 @@ public class MyLibraryMenu : MonoBehaviour
         }
         yield return menuObject.transform.localPosition = new Vector3(0, vec.y + theValThatAddedToVecY, 0);
     }
-
-    //public static void deleteSelectedWords()
-    //{
-
-    //}
 }

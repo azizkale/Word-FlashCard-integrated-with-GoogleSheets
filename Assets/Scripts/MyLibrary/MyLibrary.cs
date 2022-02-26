@@ -16,7 +16,7 @@ public class MyLibrary : MonoBehaviour
 
    
     private Library theLibrary;
-    private List<GameObject> listToManupulateWords = new List<GameObject>();   
+    private List<Word> listToManupulateWords = new List<Word>();   
 
     void Start()
     {
@@ -42,7 +42,7 @@ public class MyLibrary : MonoBehaviour
 
             //Toggle on the word-pair ()
             cloneprefabWordsPairCard.transform.Find("Toggle").GetComponent<Toggle>().onValueChanged.AddListener((val) => {
-                listToManupulateWords.Add(cloneprefabWordsPairCard);
+                listToManupulateWords.Add(word);
             });
 
             //the word-pair (select BUTTON)
@@ -111,10 +111,12 @@ public class MyLibrary : MonoBehaviour
 
     public void deleteTheSelectedWords()
     {
-        foreach (GameObject wordpair in listToManupulateWords)
+        foreach (Word word in listToManupulateWords)
         {
-            GameObject go = wordpair;
+            Delete.deleteSingleWord(word, theLibrary);
         }
+        //reload the scene after deleting
+        SceneManager.LoadScene("LibraryContent");
     }
 
 }
