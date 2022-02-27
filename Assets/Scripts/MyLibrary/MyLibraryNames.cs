@@ -53,7 +53,7 @@ public class MyLibraryNames : MonoBehaviour
                 //button below opens library contetnt
                 cloneFileCard.transform.Find("Button").GetComponent<Button>().
                     onClick.AddListener(() => {
-                        CommonVariables.callingLibrary = (labinfo.name, CallingCode.all);
+                        CommonVariables.callingLibrary = (labinfo.name, CallingCode.active);
                         SceneManager.LoadScene("LibraryContent");
                     });
                 //submenu-button
@@ -63,10 +63,8 @@ public class MyLibraryNames : MonoBehaviour
             }
         }
         catch (System.Exception e)
-        {          
-            
-            initializing.initializingtheapp();
-         
+        { 
+            initializing.initializingtheapp();         
         }
       
     } 

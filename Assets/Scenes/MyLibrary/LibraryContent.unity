@@ -217,7 +217,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Send To Archieve Selected Words
+  m_text: Send To Archive Selected Words
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f2829a1ce973ba84b8c147f43fca5253, type: 2}
   m_sharedMaterial: {fileID: -6134032461277032858, guid: f2829a1ce973ba84b8c147f43fca5253,
@@ -655,7 +655,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: All Words
+  m_text: Active Words
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f2829a1ce973ba84b8c147f43fca5253, type: 2}
   m_sharedMaterial: {fileID: -6134032461277032858, guid: f2829a1ce973ba84b8c147f43fca5253,
@@ -3217,9 +3217,9 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: All Words
-      m_Image: {fileID: 0}
     - m_Text: Active Words
+      m_Image: {fileID: 0}
+    - m_Text: All Words
       m_Image: {fileID: 0}
     - m_Text: Archive
       m_Image: {fileID: 0}

@@ -165,10 +165,10 @@ public class MyLibrary : MonoBehaviour
         //reloasd the words list (theLibary.words)
         switch (menuIndex)
         {
-            case 0:
+            case 1:
                 CommonVariables.callingLibrary = (theLibrary.name, CallingCode.all);
                 break;  
-            case 1:
+            case 0:
                 CommonVariables.callingLibrary = (theLibrary.name, CallingCode.active);
                 break;
             case 2:
