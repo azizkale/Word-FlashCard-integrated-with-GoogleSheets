@@ -15,19 +15,19 @@ public class MyLibrary : MonoBehaviour
     public GameObject libraryTitle;
     public GameObject libraryWordCount;
 
-    public TMP_Dropdown dropdownCallingLibraryOption;
+    private List<GameObject> listPrefabClonesbWordPair = new List<GameObject>();
 
+    public TMP_Dropdown dropdownCallingLibraryOption;
     private Library theLibrary = new Library();
     private List<Word> listToManupulateWords = new List<Word>();   
 
     void Start()
     {
-        createFileNamesCards();        
+        createFileNamesCards();
     }
 
     public void createFileNamesCards()
-    {     
-        
+    {       
         switch (CommonVariables.callingLibrary.callingCode)
         {
             case CallingCode.all:
@@ -52,7 +52,6 @@ public class MyLibrary : MonoBehaviour
         libraryTitle.GetComponent<TextMeshProUGUI>().text = CommonVariables.charachterLimit(theLibrary.name, 14);
 
         resetClones();
-       
         foreach (Word word in theLibrary.words)
         {
            GameObject cloneprefabWordsPairCard = Instantiate(prefabWordsPairCard, scrolContainer.transform.position, Quaternion.identity, scrolContainer.transform) as GameObject;
@@ -104,8 +103,8 @@ public class MyLibrary : MonoBehaviour
                 });
 
             });
+            listPrefabClonesbWordPair.Add(cloneprefabWordsPairCard);
         }
-        theLibrary.words.Clear();
     }
 
     public void backToMyLibraryNames()
@@ -131,7 +130,8 @@ public class MyLibrary : MonoBehaviour
     }
 
     public void deleteTheSelectedWords()
-    {       
+    {
+        resetClones();
         foreach (Word word in listToManupulateWords)
         {
             //theLibrary is re-filled in oreder to save all words except deleted one
@@ -142,11 +142,11 @@ public class MyLibrary : MonoBehaviour
         SceneManager.LoadScene("LibraryContent");
     }
 
-    public void sendToArchieve()
+    public void sendToArchive()
     {
+        resetClones();
         foreach (Word word in listToManupulateWords)
-        {
-           
+        {          
             //theLibrary is re-filled in oreder to save all words except deleted one
             theLibrary = Read.getLibrarysAllWords(theLibrary.name);
             //changing "archive" property oft the selected word
@@ -174,17 +174,14 @@ public class MyLibrary : MonoBehaviour
                 CommonVariables.callingLibrary = (theLibrary.name, CallingCode.archive);
                 break;
         }
-        createFileNamesCards();
-       
+        createFileNamesCards();       
     }
 
     private void resetClones()
     {
-        //resets all clones
-        GameObject[] _cloneprefabWordsPairCards = GameObject.FindGameObjectsWithTag("prefabWordPair");
-        foreach (var clone in _cloneprefabWordsPairCards)
+        foreach (GameObject clone in listPrefabClonesbWordPair)
         {
-            Destroy(clone);
+            DestroyImmediate(clone);
         }
     }
 }
