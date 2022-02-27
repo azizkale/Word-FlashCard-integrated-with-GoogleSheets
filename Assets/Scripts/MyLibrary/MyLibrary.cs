@@ -147,24 +147,6 @@ public class MyLibrary : MonoBehaviour
         SceneManager.LoadScene("LibraryContent");
     }
 
-    //public void displayArchieve()
-    //{
-       
-    //    SceneManager.LoadScene("LibraryContent");
-    //}
-
-    //public void displayAllContent()
-    //{
-        
-    //    SceneManager.LoadScene("LibraryContent");
-    //}
-
-    //public void displayActiveWords()
-    //{
-        
-       
-    //}
-
     public void optionalLibraryContent()
     {
         // reset words list
