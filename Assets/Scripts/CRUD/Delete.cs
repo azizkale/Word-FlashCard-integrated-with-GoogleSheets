@@ -21,7 +21,7 @@ public class Delete : MonoBehaviour
 
     public static void deleteSingleWord(Word word, Library library)
     {
-        library.words.Remove(word);
+        library.words.Remove(library.words.Find(w => w.theWord == word.theWord && w.meaning == word.meaning));
         Save.saveSingleLibrary(library);
        
     }
