@@ -963,7 +963,7 @@ MonoBehaviour:
   scrolContainer: {fileID: 943041452}
   canvas: {fileID: 2089467767}
   libraryTitle: {fileID: 602685635}
-  libraryWordCount: {fileID: 0}
+  libraryWordCount: {fileID: 1758804941}
   dropdownCallingLibraryOption: {fileID: 1750299596}
 --- !u!4 &471344143
 Transform:
@@ -3311,7 +3311,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -27.27798, y: -3}
+  m_AnchoredPosition: {x: -27.277985, y: -3}
   m_SizeDelta: {x: -509.8, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1758804943
