@@ -9,14 +9,13 @@ TagManager:
   - btnFront
   - TMP_Question
   - TMP_Answer
-  - cardFileNames
   - wordspairPrefabQuestion
   - wordspairPrefabAnswer
   - btn_prefabFileNamesCard
-  - scrolViewContetntOnMyLibraryNames
   - btnPrefabCardNames
   - subMenuOnMyLibrary
   - flashcard
+  - prefabWordPair
   layers:
   - Default
   - TransparentFX

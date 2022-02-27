@@ -14,8 +14,9 @@ public class MyLibrary : MonoBehaviour
     public GameObject canvas;
     public GameObject libraryTitle;
 
-   
-    private Library theLibrary;
+    public TMP_Dropdown dropdownCallingLibraryOption;
+
+    private Library theLibrary = new Library();
     private List<Word> listToManupulateWords = new List<Word>();   
 
     void Start()
@@ -24,7 +25,7 @@ public class MyLibrary : MonoBehaviour
     }
 
     public void createFileNamesCards()
-    {
+    {     
         switch (CommonVariables.callingLibrary.callingCode)
         {
             case CallingCode.all:
@@ -146,21 +147,52 @@ public class MyLibrary : MonoBehaviour
         SceneManager.LoadScene("LibraryContent");
     }
 
-    public void displayArchieve()
-    {
-        CommonVariables.callingLibrary = (theLibrary.name, CallingCode.archive);
-        SceneManager.LoadScene("LibraryContent");
-    }
+    //public void displayArchieve()
+    //{
+       
+    //    SceneManager.LoadScene("LibraryContent");
+    //}
 
-    public void displayAllContent()
-    {
-        CommonVariables.callingLibrary = (theLibrary.name, CallingCode.all);
-        SceneManager.LoadScene("LibraryContent");
-    }
+    //public void displayAllContent()
+    //{
+        
+    //    SceneManager.LoadScene("LibraryContent");
+    //}
 
-    public void displayActiveWords()
+    //public void displayActiveWords()
+    //{
+        
+       
+    //}
+
+    public void optionalLibraryContent()
     {
-        CommonVariables.callingLibrary = (theLibrary.name, CallingCode.active);
-        SceneManager.LoadScene("LibraryContent");
+        // reset words list
+        if (theLibrary.words.Count > 0)
+            theLibrary.words.Clear();
+
+        //resets all clones
+        GameObject[] _cloneprefabWordsPairCards = GameObject.FindGameObjectsWithTag("prefabWordPair");
+        foreach (var clone in _cloneprefabWordsPairCards)
+        {
+            Destroy(clone);
+        }
+
+        int menuIndex = dropdownCallingLibraryOption.GetComponent<TMP_Dropdown>().value;
+        //reloasd the words list (theLibary.words)
+        switch (menuIndex)
+        {
+            case 0:
+                CommonVariables.callingLibrary = (theLibrary.name, CallingCode.all);
+                break;  
+            case 1:
+                CommonVariables.callingLibrary = (theLibrary.name, CallingCode.active);
+                break;
+            case 2:
+                CommonVariables.callingLibrary = (theLibrary.name, CallingCode.archive);
+                break;
+        }
+        //SceneManager.LoadScene("LibraryContent");
+        createFileNamesCards();
     }
 }
