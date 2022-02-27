@@ -13,6 +13,7 @@ public class MyLibrary : MonoBehaviour
     public GameObject scrolContainer;
     public GameObject canvas;
     public GameObject libraryTitle;
+    public GameObject libraryWordCount;
 
     public TMP_Dropdown dropdownCallingLibraryOption;
 
@@ -36,11 +37,11 @@ public class MyLibrary : MonoBehaviour
                 break;
             case CallingCode.archive:
                 theLibrary = Read.getLibraryArchieveWords(CommonVariables.callingLibrary.libraryName);
-                break;
-            default:
-                break;
+                break;         
         }
-
+        //word count of the current library theLibrary)
+        libraryWordCount.GetComponent<TextMeshProUGUI>().text = theLibrary.words.Count.ToString();
+        //theLibrary's name
         libraryTitle.GetComponent<TextMeshProUGUI>().text = CommonVariables.charachterLimit(theLibrary.name, 14);
 
         foreach (Word word in theLibrary.words)
@@ -176,5 +177,6 @@ public class MyLibrary : MonoBehaviour
         }
         //SceneManager.LoadScene("LibraryContent");
         createFileNamesCards();
+       
     }
 }
