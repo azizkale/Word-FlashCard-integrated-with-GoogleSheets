@@ -46,7 +46,7 @@ public class SelectLibrarMenu : MonoBehaviour
            cloneSelectLibraryButton.transform.Find("Button").GetComponent<Button>()
             .onClick.AddListener(() => {
 
-                CommonVariables.selectedLibraryContetnt = Read.getLibraryContentWithoutArchive(lab.name);
+                CommonVariables.selectedLibraryContetnt = Read.getLibraryActiveWords(lab.name);
                 DestroyImmediate(cloneselectLibraryBackground); // to cancel select library menu
 
             });

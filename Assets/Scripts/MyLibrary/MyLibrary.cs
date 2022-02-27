@@ -25,7 +25,21 @@ public class MyLibrary : MonoBehaviour
 
     public void createFileNamesCards()
     {
-        theLibrary = Read.getLibraryContentWithoutArchive(CommonVariables.libraryName);
+        switch (CommonVariables.callingLibrary.callingCode)
+        {
+            case CallingCode.all:
+                theLibrary = Read.getLibrarysAllWords(CommonVariables.callingLibrary.libraryName);
+                break;
+            case CallingCode.active:
+                theLibrary = Read.getLibraryActiveWords(CommonVariables.callingLibrary.libraryName);
+                break;
+            case CallingCode.archive:
+                theLibrary = Read.getLibraryArchieveWords(CommonVariables.callingLibrary.libraryName);
+                break;
+            default:
+                break;
+        }
+
         libraryTitle.GetComponent<TextMeshProUGUI>().text = CommonVariables.charachterLimit(theLibrary.name, 14);
 
         foreach (Word word in theLibrary.words)
@@ -87,11 +101,6 @@ public class MyLibrary : MonoBehaviour
         SceneManager.LoadScene("MyLibraryNames");
     }
 
-    public void startLearning()
-    {
-
-    }
-
     private void updateTheWord(
         Word word, 
         GameObject canvas, 
@@ -134,6 +143,24 @@ public class MyLibrary : MonoBehaviour
             Save.saveSingleLibrary(theLibrary);// resave
         }
         //reload the scene after deleting
+        SceneManager.LoadScene("LibraryContent");
+    }
+
+    public void displayArchieve()
+    {
+        CommonVariables.callingLibrary = (theLibrary.name, CallingCode.archive);
+        SceneManager.LoadScene("LibraryContent");
+    }
+
+    public void displayAllContent()
+    {
+        CommonVariables.callingLibrary = (theLibrary.name, CallingCode.all);
+        SceneManager.LoadScene("LibraryContent");
+    }
+
+    public void displayActiveWords()
+    {
+        CommonVariables.callingLibrary = (theLibrary.name, CallingCode.active);
         SceneManager.LoadScene("LibraryContent");
     }
 }

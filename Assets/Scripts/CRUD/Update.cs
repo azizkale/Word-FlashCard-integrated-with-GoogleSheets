@@ -63,7 +63,7 @@ public class Update : MonoBehaviour
         List<AllLibrariesInfo> allLibrariesInfo = Read.getListAllLibrariesInfo();
 
         //calls the library from the device by its old name
-        Library callinglab = Read.getLibraryContentWithoutArchive(info.name);
+        Library callinglab = Read.getLibraryActiveWords(info.name);
                
         //creating new Info for the being updated library
         AllLibrariesInfo newInfo = new AllLibrariesInfo();

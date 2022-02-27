@@ -1,7 +1,11 @@
 ﻿
 public static class CommonVariables 
 {
-    public static string libraryName; // to open libarary content scene   
+
+    public static (string libraryName, CallingCode callingCode) callingLibrary;
+
+
+    //public static string libraryName; // to open libarary content scene   
     //    
     public static Library selectedLibraryContetnt = new Library();
 
