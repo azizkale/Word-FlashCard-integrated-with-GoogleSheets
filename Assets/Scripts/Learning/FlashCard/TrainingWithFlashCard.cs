@@ -103,6 +103,8 @@ public class TrainingWithFlashCard : MonoBehaviour
 
         //to control that user cliks it only one time
        btnCorrectAnswer.GetComponent<Button>().interactable = false;
+
+        AnimationControl.scoreAnimation();
     }
 
     public void wrongAnswer()
