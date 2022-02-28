@@ -1996,7 +1996,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 471344142}
         m_TargetAssemblyTypeName: MyLibrary, Assembly-CSharp
-        m_MethodName: sendToArchieve
+        m_MethodName: sendToArchive
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
