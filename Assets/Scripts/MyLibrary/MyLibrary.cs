@@ -52,6 +52,7 @@ public class MyLibrary : MonoBehaviour
         libraryTitle.GetComponent<TextMeshProUGUI>().text = CommonVariables.charachterLimit(theLibrary.name, 14);
 
         resetClones();
+        listPrefabClonesbWordPair.Clear();
         foreach (Word word in theLibrary.words)
         {
            GameObject cloneprefabWordsPairCard = Instantiate(prefabWordsPairCard, scrolContainer.transform.position, Quaternion.identity, scrolContainer.transform) as GameObject;
@@ -66,7 +67,10 @@ public class MyLibrary : MonoBehaviour
 
             //Toggle on the word-pair ()
             cloneprefabWordsPairCard.transform.Find("Toggle").GetComponent<Toggle>().onValueChanged.AddListener((val) => {
+                if(val)
                 listToManupulateWords.Add(word);
+                if (!val)
+                    listToManupulateWords.Remove(word);
             });
 
             //the word-pair (select BUTTON)
@@ -131,7 +135,6 @@ public class MyLibrary : MonoBehaviour
 
     public void deleteTheSelectedWords()
     {
-        resetClones();
         foreach (Word word in listToManupulateWords)
         {
             //theLibrary is re-filled in oreder to save all words except deleted one
@@ -144,7 +147,6 @@ public class MyLibrary : MonoBehaviour
 
     public void sendToArchive()
     {
-        resetClones();
         foreach (Word word in listToManupulateWords)
         {          
             //theLibrary is re-filled in oreder to save all words except deleted one
@@ -177,6 +179,22 @@ public class MyLibrary : MonoBehaviour
         createFileNamesCards();       
     }
 
+   public void selectAllWords()
+    {
+        foreach (GameObject clone in listPrefabClonesbWordPair)
+        {
+            clone.transform.Find("Toggle").GetComponent<Toggle>().isOn = true;
+        }
+    }
+
+    public void unselectAllWords()
+    {
+        foreach (GameObject clone in listPrefabClonesbWordPair)
+        {
+            clone.transform.Find("Toggle").GetComponent<Toggle>().isOn = false;
+        }
+        listToManupulateWords.Clear();
+    }
     private void resetClones()
     {
         foreach (GameObject clone in listPrefabClonesbWordPair)
@@ -184,4 +202,6 @@ public class MyLibrary : MonoBehaviour
             DestroyImmediate(clone);
         }
     }
+
+   
 }

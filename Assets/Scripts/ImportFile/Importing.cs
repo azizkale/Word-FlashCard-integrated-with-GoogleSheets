@@ -37,6 +37,7 @@ public class Importing : MonoBehaviour
     public GameObject prefabGiveName;
     GameObject clonePrefabGiveName;
     public GameObject prefabAlertWarning;
+
     void Start()
     {       
         //PlayerPrefs.DeleteAll();       
