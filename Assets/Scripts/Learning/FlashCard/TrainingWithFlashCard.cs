@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -32,6 +33,7 @@ public class TrainingWithFlashCard : MonoBehaviour
     public GameObject prefabGeneralWarnung;
     public GameObject prefabGeneralCompleted;
 
+    public GameObject animScore;
     void Start()
     {
         //picks the library content up by showing "SelectLibrary" menu
@@ -95,18 +97,9 @@ public class TrainingWithFlashCard : MonoBehaviour
     }
 
    public void correctAnswer()
-    {      
-        //increases and displays the count of sight of the word
-        wordInfo.transform.Find("SightCountIcon").transform.Find("TMP_SightCount").GetComponent<TextMeshProUGUI>().text = (++displayingWord.viewCount).ToString();
-
-        Save.saveSingleLibrary(libraryToLearn);
-
-        //to control that user cliks it only one time
-       btnCorrectAnswer.GetComponent<Button>().interactable = false;
-
-        AnimationControl.scoreAnimation();
+    {
+        StartCoroutine(_correctAnswer());
     }
-
     public void wrongAnswer()
     {
         Debug.Log("wrong answer");
@@ -265,7 +258,19 @@ public class TrainingWithFlashCard : MonoBehaviour
        
 
     }
-
-
    
+    private IEnumerator _correctAnswer()
+    { 
+        //to control that user cliks it only one time
+        btnCorrectAnswer.GetComponent<Button>().interactable = false;
+
+        // score animation
+        animScore.GetComponent<Animator>().SetTrigger("score");
+        yield return new WaitForSeconds(1f);
+
+            wordInfo.transform.Find("SightCountIcon").transform.Find("TMP_SightCount").GetComponent<TextMeshProUGUI>().text = (++displayingWord.viewCount).ToString();
+
+        Save.saveSingleLibrary(libraryToLearn);
+
+    }
 }
