@@ -64,6 +64,7 @@ public class TrainingWithFlashCard : MonoBehaviour
 
         //to control that user cliks it only one time
         btnCorrectAnswer.GetComponent<Button>().interactable = true;
+        btnWrongAnswer.GetComponent<Button>().interactable = true;
     }
 
     public void nextWord()
@@ -101,8 +102,16 @@ public class TrainingWithFlashCard : MonoBehaviour
         StartCoroutine(_correctAnswer());
     }
     public void wrongAnswer()
-    {
-        Debug.Log("wrong answer");
+    {           
+
+        if(displayingWord.viewCount > 0)
+        {
+         wordInfo.transform.Find("SightCountIcon").transform.Find("TMP_SightCount").GetComponent<TextMeshProUGUI>().text = (--displayingWord.viewCount).ToString();
+
+           Save.saveSingleLibrary(libraryToLearn);          
+        }
+        //to control that user cliks it only one time
+        btnWrongAnswer.GetComponent<Button>().interactable = false;
     }
 
     private void btnNextInteractablitiyControl(Button btnnext, Button btnprevious, int index)

@@ -2520,7 +2520,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1017405483}
         m_TargetAssemblyTypeName: TrainingWithFlashCard, Assembly-CSharp
         m_MethodName: wrongAnswer
         m_Mode: 1
