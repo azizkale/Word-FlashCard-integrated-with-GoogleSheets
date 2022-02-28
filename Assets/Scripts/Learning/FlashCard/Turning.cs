@@ -35,7 +35,7 @@ public class Turning : MonoBehaviour
         btnWrongAnswer.gameObject.SetActive(true);
     }
    
-    IEnumerator turnTheTheCardToFront(GameObject go)
+   IEnumerator turnTheTheCardToFront(GameObject go)
     {
         for (int i = 5; i >= 0; i--)
         {
