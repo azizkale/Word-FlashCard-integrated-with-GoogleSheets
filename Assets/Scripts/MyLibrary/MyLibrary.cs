@@ -160,6 +160,21 @@ public class MyLibrary : MonoBehaviour
         SceneManager.LoadScene("LibraryContent");
     }
 
+    public void makeActive()
+    {
+        foreach (Word word in listToManupulateWords)
+        {
+            //theLibrary is re-filled in oreder to save all words except deleted one
+            theLibrary = Read.getLibrarysAllWords(theLibrary.name);
+            //changing "archive" property oft the selected word
+            theLibrary.words.Find(w => w.theWord == word.theWord && w.meaning == word.meaning).archive = false;
+
+            Save.saveSingleLibrary(theLibrary);// resave
+        }
+        //reload the scene after deleting
+        SceneManager.LoadScene("LibraryContent");
+    }
+
     public void optionalLibraryContent()
     {       
         int menuIndex = dropdownCallingLibraryOption.GetComponent<TMP_Dropdown>().value;
