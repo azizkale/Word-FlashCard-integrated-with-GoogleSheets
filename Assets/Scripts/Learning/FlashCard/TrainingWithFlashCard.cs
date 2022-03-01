@@ -34,6 +34,7 @@ public class TrainingWithFlashCard : MonoBehaviour
     public GameObject prefabGeneralCompleted;
 
     public GameObject prefabScore1;
+    public GameObject prefabScore1_;
     public GameObject viewCountOnTheScrene;
     void Start()
     {
@@ -103,16 +104,9 @@ public class TrainingWithFlashCard : MonoBehaviour
         StartCoroutine(_correctAnswer());        
     }
     public void wrongAnswer()
-    {           
-
-        if(displayingWord.viewCount > 0)
-        {
-         wordInfo.transform.Find("ViewCountIcon").transform.Find("TMP_ViewCount").GetComponent<TextMeshProUGUI>().text = (--displayingWord.viewCount).ToString();
-
-           Save.saveSingleLibrary(libraryToLearn);          
-        }
-        //to control that user cliks it only one time
-        btnWrongAnswer.GetComponent<Button>().interactable = false;
+    {
+        StartCoroutine(_wrongAnswer());
+      
     }
 
     private void btnNextInteractablitiyControl(Button btnnext, Button btnprevious, int index)
@@ -275,23 +269,40 @@ public class TrainingWithFlashCard : MonoBehaviour
         btnCorrectAnswer.GetComponent<Button>().interactable = false;
 
         // score animation
-        yield return StartCoroutine(createScore1Animation());
+        yield return StartCoroutine(createScoreAnimation(prefabScore1, 1));
        
         wordInfo.transform.Find("ViewCountIcon").transform.Find("TMP_ViewCount").GetComponent<TextMeshProUGUI>().text = (++displayingWord.viewCount).ToString();
 
         Save.saveSingleLibrary(libraryToLearn);
     }
 
-    private IEnumerator createScore1Animation()
+    private IEnumerator _wrongAnswer()
     {
-        GameObject  clonePrefabScoer1 = Instantiate(prefabScore1, viewCountOnTheScrene.transform.position, Quaternion.identity, viewCountOnTheScrene.transform);
+        //to control that user cliks it only one time
+        btnWrongAnswer.GetComponent<Button>().interactable = false;
+       
+        if (displayingWord.viewCount > 0)
+        {
+            // score animation
+            yield return StartCoroutine(createScoreAnimation(prefabScore1_, -1));
+
+            wordInfo.transform.Find("ViewCountIcon").transform.Find("TMP_ViewCount").GetComponent<TextMeshProUGUI>().text = (--displayingWord.viewCount).ToString();
+
+            Save.saveSingleLibrary(libraryToLearn);
+        }
+       
+    }
+
+    private IEnumerator createScoreAnimation( GameObject prefab, int position)
+    {
+        GameObject  clonePrefabScoer1 = Instantiate(prefab, viewCountOnTheScrene.transform.position, Quaternion.identity, viewCountOnTheScrene.transform);
 
         clonePrefabScoer1.transform.localScale = Vector3.one / 3;
 
         for (int i = 1; i <= 30 ; i++)
         {
            yield return clonePrefabScoer1.transform.localScale = i * Vector3.one / 30;
-           yield return clonePrefabScoer1.transform.localPosition = new Vector3(-8/10*i, i, 0);
+           yield return clonePrefabScoer1.transform.localPosition = new Vector3(-8/10*i, position*i, 0);
            yield return new WaitForSeconds(0.00000000000000000000000001f);
         }
         Destroy(clonePrefabScoer1);
