@@ -16,7 +16,6 @@ public class MyLibrary : MonoBehaviour
     public GameObject libraryWordCount;
 
     public TMP_InputField searchInput;
-    private List<string> searchingList;
 
     private List<GameObject> listPrefabClonesbWordPair = new List<GameObject>();
 
@@ -46,7 +45,10 @@ public class MyLibrary : MonoBehaviour
             case CallingCode.archive:
                 theLibrary = Read.getLibraryArchieveWords(CommonVariables.callingLibrary.libraryName);
                 dropdownCallingLibraryOption.GetComponent<TMP_Dropdown>().value = 2;
-                break;           
+                break;
+            case CallingCode.search:
+                
+                break;
             default:
                 theLibrary = Read.getLibrarysAllWords(CommonVariables.callingLibrary.libraryName);
                 break;
@@ -60,9 +62,7 @@ public class MyLibrary : MonoBehaviour
         resetClones();
         listPrefabClonesbWordPair.Clear();
 
-
         createWordPairGameObjects(theLibrary);
-
       
     }
 
@@ -236,6 +236,16 @@ public class MyLibrary : MonoBehaviour
 
     public void searchWord()
     {
+        foreach (Word word in theLibrary.words.ToArray())
+        {
+            if(!word.theWord.Contains(searchInput.text) || !word.meaning.Contains(searchInput.text))
+            {
+                theLibrary.words.Remove(word);
+            }
+        }
+
+        resetClones();
+        createWordPairGameObjects(theLibrary);
     }
 }
 
