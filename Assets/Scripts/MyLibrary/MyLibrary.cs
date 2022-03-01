@@ -15,6 +15,9 @@ public class MyLibrary : MonoBehaviour
     public GameObject libraryTitle;
     public GameObject libraryWordCount;
 
+    public TMP_InputField searchInput;
+    private List<string> searchingList;
+
     private List<GameObject> listPrefabClonesbWordPair = new List<GameObject>();
 
     public TMP_Dropdown dropdownCallingLibraryOption;
@@ -24,6 +27,8 @@ public class MyLibrary : MonoBehaviour
     void Start()
     {
         createFileNamesCards();
+
+        
     }
 
     public void createFileNamesCards()
@@ -41,11 +46,12 @@ public class MyLibrary : MonoBehaviour
             case CallingCode.archive:
                 theLibrary = Read.getLibraryArchieveWords(CommonVariables.callingLibrary.libraryName);
                 dropdownCallingLibraryOption.GetComponent<TMP_Dropdown>().value = 2;
-                break;
+                break;           
             default:
                 theLibrary = Read.getLibrarysAllWords(CommonVariables.callingLibrary.libraryName);
                 break;
         }
+
         //word count of the current library theLibrary)
         libraryWordCount.GetComponent<TextMeshProUGUI>().text = theLibrary.words.Count.ToString();
         //theLibrary's name
@@ -53,22 +59,31 @@ public class MyLibrary : MonoBehaviour
 
         resetClones();
         listPrefabClonesbWordPair.Clear();
-        foreach (Word word in theLibrary.words)
+
+
+        createWordPairGameObjects(theLibrary);
+
+      
+    }
+
+    private void createWordPairGameObjects(Library library)
+    {
+        foreach (Word word in library.words)
         {
-           GameObject cloneprefabWordsPairCard = Instantiate(prefabWordsPairCard, scrolContainer.transform.position, Quaternion.identity, scrolContainer.transform) as GameObject;
+            GameObject cloneprefabWordsPairCard = Instantiate(prefabWordsPairCard, scrolContainer.transform.position, Quaternion.identity, scrolContainer.transform) as GameObject;
 
             //TMP_Question
             TextMeshProUGUI questionOnPrefab = cloneprefabWordsPairCard.transform.Find("Button").transform.Find("TMP_question").GetComponent<TextMeshProUGUI>();
-            questionOnPrefab.text = CommonVariables.charachterLimit(word.theWord,30);
+            questionOnPrefab.text = CommonVariables.charachterLimit(word.theWord, 30);
 
             //TMP_Answer
             TextMeshProUGUI answerOnPrefab = cloneprefabWordsPairCard.transform.Find("Button").transform.Find("TMP_answer").GetComponent<TextMeshProUGUI>();
-            answerOnPrefab.text = CommonVariables.charachterLimit(word.meaning,30);
+            answerOnPrefab.text = CommonVariables.charachterLimit(word.meaning, 30);
 
             //Toggle on the word-pair ()
             cloneprefabWordsPairCard.transform.Find("Toggle").GetComponent<Toggle>().onValueChanged.AddListener((val) => {
-                if(val)
-                listToManupulateWords.Add(word);
+                if (val)
+                    listToManupulateWords.Add(word);
                 if (!val)
                     listToManupulateWords.Remove(word);
             });
@@ -97,7 +112,7 @@ public class MyLibrary : MonoBehaviour
                 inputA.text = word.meaning;
 
                 //UPDATE button
-                cloneprefabupdateword.transform.Find("BottomMenu").transform.Find("btnUpdate").GetComponent<Button>().onClick.AddListener(()=> {
+                cloneprefabupdateword.transform.Find("BottomMenu").transform.Find("btnUpdate").GetComponent<Button>().onClick.AddListener(() => {
                     updateTheWord(word, canvas, cloneprefabupdateword, inputA, inputQ, cloneprefabWordsPairCard);
                 });
 
@@ -210,6 +225,7 @@ public class MyLibrary : MonoBehaviour
         }
         listToManupulateWords.Clear();
     }
+   
     private void resetClones()
     {
         foreach (GameObject clone in listPrefabClonesbWordPair)
@@ -218,5 +234,20 @@ public class MyLibrary : MonoBehaviour
         }
     }
 
-   
+    public void searchWord()
+    {
+    }
 }
+
+
+//List<AllLibrariesInfo> allLibrariesInfo = Read.getListAllLibrariesInfo();
+////List<string> allLibrariesNames = new List<string>();
+//List<Word> allWords = new List<Word>();
+
+//foreach (AllLibrariesInfo info in allLibrariesInfo)
+//{
+//    foreach (Word word in Read.getLibrarysAllWords(info.name).words)
+//    {
+//        allWords.Add(word);
+//    }
+//}
