@@ -24,10 +24,10 @@ public class Searching : MonoBehaviour
     private List<Word> listToManupulateWords = new List<Word>();
     void Start()
     {
-        createFileNamesCards();
+        createWordsCards();
     }
 
-    public void createFileNamesCards()
+    public void createWordsCards()
     {
         switch (CommonVariables.callingLibrary.callingCode)
         {
@@ -204,7 +204,7 @@ public class Searching : MonoBehaviour
                 CommonVariables.callingLibrary = (theLibrary.name, CallingCode.archive);
                 break;
         }
-        createFileNamesCards();
+        createWordsCards();
     }
 
     public void selectAllWords()
@@ -239,7 +239,7 @@ public class Searching : MonoBehaviour
 
         CommonVariables.callingLibrary = (theLibrary.name, CallingCode.search);
 
-        createFileNamesCards();
+        createWordsCards();
     }
 
 
