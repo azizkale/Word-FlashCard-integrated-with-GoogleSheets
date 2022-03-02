@@ -49,7 +49,6 @@ public class Searching : MonoBehaviour
             default:
                 theLibrary = Read.getAllLibrariesWords();
                 dropdownCallingLibraryOption.GetComponent<TMP_Dropdown>().value = 1;
-                libraryTitle.text = "All Words";
                 break;
         }
 
@@ -235,7 +234,7 @@ public class Searching : MonoBehaviour
     public void searchWord()
     {
         //while searching the app display all words in the dropdown
-        dropdownCallingLibraryOption.GetComponent<TMP_Dropdown>().value = 1;
+        //dropdownCallingLibraryOption.GetComponent<TMP_Dropdown>().value = 1;
 
         CommonVariables.callingLibrary = (theLibrary.name, CallingCode.search);
 

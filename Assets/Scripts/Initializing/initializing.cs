@@ -36,6 +36,7 @@ public class initializing : MonoBehaviour
             word.meaning = str[3];
             word.languageFrom = str[0];
             word.languageTo = str[1];
+            word.libraryName = "Sample Library";
             wordsList.Add(word);
         }           
 
