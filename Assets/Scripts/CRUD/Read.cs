@@ -103,4 +103,24 @@ public class Read : MonoBehaviour
         allActiveWordsLibrary.wordsCount = allActiveWords.Count;
         return allActiveWordsLibrary;
     }
+
+    public static Library getAllArchiveWords()
+    {
+        Library allAArchiveWordsLibrary = new Library();
+        List<Word> allArchiveWords = new List<Word>();
+
+        foreach (Word word in combineAllWords())
+        {
+            if (word.archive == true)
+            {
+                allArchiveWords.Add(word);
+            }
+        }
+
+        allAArchiveWordsLibrary.name = "All Archive Words";
+        allAArchiveWordsLibrary.language = "Multilanguage";
+        allAArchiveWordsLibrary.words = allArchiveWords;
+        allAArchiveWordsLibrary.wordsCount = allArchiveWords.Count;
+        return allAArchiveWordsLibrary;
+    }
 }

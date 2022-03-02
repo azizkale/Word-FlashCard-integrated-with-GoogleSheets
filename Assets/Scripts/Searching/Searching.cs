@@ -34,14 +34,13 @@ public class Searching : MonoBehaviour
             case CallingCode.all:
                 theLibrary = Read.getAllLibrariesWords();
                 dropdownCallingLibraryOption.GetComponent<TMP_Dropdown>().value = 1;
-                libraryTitle.text = theLibrary.name;
                 break;
             case CallingCode.active:
                 theLibrary = Read.getAllActiveWords();
                 dropdownCallingLibraryOption.GetComponent<TMP_Dropdown>().value = 0;
                 break;
             case CallingCode.archive:
-                theLibrary = Read.getLibraryArchieveWords(CommonVariables.callingLibrary.libraryName);
+                theLibrary = Read.getAllArchiveWords();
                 dropdownCallingLibraryOption.GetComponent<TMP_Dropdown>().value = 2;
                 break;
             case CallingCode.search:
@@ -56,6 +55,8 @@ public class Searching : MonoBehaviour
 
         //word count of the current library theLibrary)
         libraryWordCount.GetComponent<TextMeshProUGUI>().text = theLibrary.words.Count.ToString();
+        //theLibrary's name
+        libraryTitle.GetComponent<TextMeshProUGUI>().text = theLibrary.name;
 
         resetClones();
         listPrefabClonesbWordPair.Clear();
