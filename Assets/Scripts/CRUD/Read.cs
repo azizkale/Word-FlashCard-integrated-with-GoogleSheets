@@ -44,4 +44,18 @@ public class Read : MonoBehaviour
 
         return theLibrary;
     }
+
+    public static Library getBeingSearchedwordsInASinglelibrary(string libraryname, string searchString)
+    {
+        Library theLibrary = JsonConvert.DeserializeObject<Library>(PlayerPrefs.GetString(libraryname));
+        
+        foreach (Word word in theLibrary.words.ToArray())
+        {
+            if(!(word.theWord +" "+ word.meaning).Contains(searchString))
+            {
+                theLibrary.words.Remove(word);
+            }
+        }
+        return theLibrary;
+    }
 }

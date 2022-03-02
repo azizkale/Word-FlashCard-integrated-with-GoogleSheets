@@ -16,6 +16,7 @@ public class MyLibrary : MonoBehaviour
     public GameObject libraryWordCount;
 
     public TMP_InputField searchInput;
+    List<Word> searchingList = new List<Word>();
 
     private List<GameObject> listPrefabClonesbWordPair = new List<GameObject>();
 
@@ -25,9 +26,7 @@ public class MyLibrary : MonoBehaviour
 
     void Start()
     {
-        createFileNamesCards();
-
-        
+        createFileNamesCards();       
     }
 
     public void createFileNamesCards()
@@ -47,7 +46,7 @@ public class MyLibrary : MonoBehaviour
                 dropdownCallingLibraryOption.GetComponent<TMP_Dropdown>().value = 2;
                 break;
             case CallingCode.search:
-                
+                theLibrary = Read.getBeingSearchedwordsInASinglelibrary(CommonVariables.callingLibrary.libraryName,searchInput.text);
                 break;
             default:
                 theLibrary = Read.getLibrarysAllWords(CommonVariables.callingLibrary.libraryName);
@@ -62,13 +61,12 @@ public class MyLibrary : MonoBehaviour
         resetClones();
         listPrefabClonesbWordPair.Clear();
 
-        createWordPairGameObjects(theLibrary);
-      
+        createWordPairGameObjects(theLibrary.words);      
     }
 
-    private void createWordPairGameObjects(Library library)
+    private void createWordPairGameObjects(List<Word> list)
     {
-        foreach (Word word in library.words)
+        foreach (Word word in list)
         {
             GameObject cloneprefabWordsPairCard = Instantiate(prefabWordsPairCard, scrolContainer.transform.position, Quaternion.identity, scrolContainer.transform) as GameObject;
 
@@ -236,16 +234,12 @@ public class MyLibrary : MonoBehaviour
 
     public void searchWord()
     {
-        foreach (Word word in theLibrary.words.ToArray())
-        {
-            if(!word.theWord.Contains(searchInput.text) || !word.meaning.Contains(searchInput.text))
-            {
-                theLibrary.words.Remove(word);
-            }
-        }
+        //while searching the app display all words in the dropdown
+        dropdownCallingLibraryOption.GetComponent<TMP_Dropdown>().value = 1;
 
-        resetClones();
-        createWordPairGameObjects(theLibrary);
+        CommonVariables.callingLibrary = (theLibrary.name, CallingCode.search);
+
+        createFileNamesCards();
     }
 }
 
