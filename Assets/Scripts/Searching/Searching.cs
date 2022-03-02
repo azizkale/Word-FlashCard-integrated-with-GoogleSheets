@@ -34,10 +34,10 @@ public class Searching : MonoBehaviour
             case CallingCode.all:
                 theLibrary = Read.getAllLibrariesWords();
                 dropdownCallingLibraryOption.GetComponent<TMP_Dropdown>().value = 1;
-                libraryTitle.text = "All Words";
+                libraryTitle.text = theLibrary.name;
                 break;
             case CallingCode.active:
-                theLibrary = Read.getLibraryActiveWords(CommonVariables.callingLibrary.libraryName);
+                theLibrary = Read.getAllActiveWords();
                 dropdownCallingLibraryOption.GetComponent<TMP_Dropdown>().value = 0;
                 break;
             case CallingCode.archive:

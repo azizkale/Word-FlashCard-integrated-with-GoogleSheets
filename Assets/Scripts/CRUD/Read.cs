@@ -70,7 +70,6 @@ public class Read : MonoBehaviour
             Library lib = Read.getLibrarysAllWords(info.name);
             allWords.AddRange(lib.words); // all libraries are joined
         }
-
         return allWords;
     }
 
@@ -78,10 +77,30 @@ public class Read : MonoBehaviour
     {
         Library allWordsLibrary = new Library();
 
-        allWordsLibrary.name = "AllLibraries";
+        allWordsLibrary.name = "All Words";
         allWordsLibrary.language = "Multilanguage";
         allWordsLibrary.words = combineAllWords();
         allWordsLibrary.wordsCount = combineAllWords().Count;
         return allWordsLibrary;
+    }
+
+    public static Library getAllActiveWords()
+    {
+        Library allActiveWordsLibrary = new Library();
+        List<Word> allActiveWords = new List<Word>();
+
+        foreach (Word word in combineAllWords())
+        {
+            if(word.archive == false)
+            {
+                allActiveWords.Add(word);
+            }
+        }
+
+        allActiveWordsLibrary.name = "All Active Words";
+        allActiveWordsLibrary.language = "Multilanguage";
+        allActiveWordsLibrary.words = allActiveWords;
+        allActiveWordsLibrary.wordsCount = allActiveWords.Count;
+        return allActiveWordsLibrary;
     }
 }
