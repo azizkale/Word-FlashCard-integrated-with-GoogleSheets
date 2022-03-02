@@ -7,5 +7,6 @@ public class Word
     public string languageTo;
     public int viewCount;
     public bool archive;
+    public string libraryName;
     
 }

@@ -85,6 +85,11 @@ public class Update : MonoBehaviour
 
         //and re-saved the library by its new name (newname)
         callinglab.name = newname;
+
+        foreach (Word word in callinglab.words)
+        {
+            word.libraryName = newname;
+        }
         Save.saveSingleLibrary(callinglab);
     }
    

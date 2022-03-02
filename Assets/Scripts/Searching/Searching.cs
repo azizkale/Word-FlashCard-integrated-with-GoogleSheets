@@ -151,41 +151,41 @@ public class Searching : MonoBehaviour
         foreach (Word word in listToManupulateWords)
         {
             //theLibrary is re-filled in oreder to save all words except deleted one
-            theLibrary = Read.getLibrarysAllWords(theLibrary.name);
-            Delete.deleteSingleWord(word, theLibrary);
+            Library beingDeletedWordsLibrary = Read.getLibrarysAllWords(word.libraryName);
+            Delete.deleteSingleWord(word, beingDeletedWordsLibrary);
         }
         //reload the scene after deleting
-        SceneManager.LoadScene("LibraryContent");
+        SceneManager.LoadScene("Searching");
     }
 
-    public void sendToArchive()
+    public void sendToArchiveTheSelectedWords()
     {
         foreach (Word word in listToManupulateWords)
         {
             //theLibrary is re-filled in oreder to save all words except deleted one
-            theLibrary = Read.getLibrarysAllWords(theLibrary.name);
+           Library beingUpdatedWordsLibrary = Read.getLibrarysAllWords(word.libraryName);
             //changing "archive" property oft the selected word
-            theLibrary.words.Find(w => w.theWord == word.theWord && w.meaning == word.meaning).archive = true;
+            beingUpdatedWordsLibrary.words.Find(w => w.theWord == word.theWord && w.meaning == word.meaning).archive = true;
 
-            Save.saveSingleLibrary(theLibrary);// resave
+            Save.saveSingleLibrary(beingUpdatedWordsLibrary);// resave
         }
         //reload the scene after deleting
-        SceneManager.LoadScene("LibraryContent");
+        SceneManager.LoadScene("Searching");
     }
 
-    public void makeActive()
+    public void makeActiveTheSelectedWords()
     {
         foreach (Word word in listToManupulateWords)
         {
             //theLibrary is re-filled in oreder to save all words except deleted one
-            theLibrary = Read.getLibrarysAllWords(theLibrary.name);
+            Library beingMadeActivedWordsLibrary = Read.getLibrarysAllWords(word.libraryName);
             //changing "archive" property oft the selected word
-            theLibrary.words.Find(w => w.theWord == word.theWord && w.meaning == word.meaning).archive = false;
+            beingMadeActivedWordsLibrary.words.Find(w => w.theWord == word.theWord && w.meaning == word.meaning).archive = false;
 
-            Save.saveSingleLibrary(theLibrary);// resave
+            Save.saveSingleLibrary(beingMadeActivedWordsLibrary);// resave
         }
         //reload the scene after deleting
-        SceneManager.LoadScene("LibraryContent");
+        SceneManager.LoadScene("Searching");
     }
 
     public void optionalLibraryContent()

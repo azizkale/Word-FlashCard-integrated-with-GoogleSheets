@@ -248,6 +248,7 @@ public class Importing : MonoBehaviour
             {
                 foreach (Word word in library.words)
                 {
+                    word.libraryName = filename;
                     allwords.Add(word);
                 }
                 selectedLibraires.Add((library, library.name));
