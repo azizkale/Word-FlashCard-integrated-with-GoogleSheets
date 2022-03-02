@@ -79,7 +79,7 @@ public class Read : MonoBehaviour
 
         foreach (Word word in combineAllWords())
         {
-            if(word.archive != false)
+            if(word.archive == false)
             {
                 allActiveWords.Add(word);
             }
@@ -158,15 +158,18 @@ public class Read : MonoBehaviour
         Library theLibrary = new Library();
         theLibrary.name = libraryname;
 
-        if(libraryname =="All Words")
+        switch (libraryname)
         {
-
-        }
-        
-        if(libraryname == "All Archive Words")
-        {
-
-        }
+            case "All Words":
+                theLibrary.words = combineAllWords();
+                break;    
+            case "All Active Words":
+                theLibrary.words = combineAllActiveWords();
+                break;    
+            case "All Archive Words":
+                theLibrary.words = combineAllArchiveWords();
+                break;          
+        }     
 
         foreach (Word word in theLibrary.words.ToArray())
         {

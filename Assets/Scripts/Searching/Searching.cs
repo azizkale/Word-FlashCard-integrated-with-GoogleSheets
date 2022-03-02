@@ -44,7 +44,7 @@ public class Searching : MonoBehaviour
                 dropdownCallingLibraryOption.GetComponent<TMP_Dropdown>().value = 2;
                 break;
             case CallingCode.search:
-                theLibrary = Read.getBeingSearchedwordsInASinglelibrary(CommonVariables.callingLibrary.libraryName, searchInput.text);
+                theLibrary = Read.getBeingSearchWordsInAlllibraries(CommonVariables.callingLibrary.libraryName, searchInput.text);
                 break;
             default:
                 theLibrary = Read.getAllLibrariesWords();
@@ -234,8 +234,19 @@ public class Searching : MonoBehaviour
     public void searchWord()
     {
         //while searching the app display all words in the dropdown
-        //dropdownCallingLibraryOption.GetComponent<TMP_Dropdown>().value = 1;
-
+        switch (theLibrary.name)
+        {
+            case "All Words":
+                dropdownCallingLibraryOption.GetComponent<TMP_Dropdown>().value = 1;
+                break;
+            case "All Active Words":
+                dropdownCallingLibraryOption.GetComponent<TMP_Dropdown>().value = 0;
+                break;
+            case "All Archive Words":
+                dropdownCallingLibraryOption.GetComponent<TMP_Dropdown>().value = 2;
+                break;
+        }
+       
         CommonVariables.callingLibrary = (theLibrary.name, CallingCode.search);
 
         createWordsCards();
