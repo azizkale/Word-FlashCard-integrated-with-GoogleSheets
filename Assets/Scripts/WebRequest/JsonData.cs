@@ -34,14 +34,13 @@ public class JsonData : MonoBehaviour
 
     public void getDataFromGoogle()
     {
-        Loading();
         string url = "";
         //givename-card to the creating file
         GameObject clonePrefabGetUrl = Instantiate(prefabGetUrl, canvas.transform.position, Quaternion.identity, canvas.transform) as GameObject;
 
         //OK button on the prefabGiveName
         clonePrefabGetUrl.transform.Find("btn_OK").GetComponent<Button>().onClick.AddListener(() => {
-
+            Loading();
             string sheetLink = clonePrefabGetUrl.transform.Find("InputField (TMP)").transform.Find("Text Area").transform.Find("Text").GetComponent<TextMeshProUGUI>().text;
 
             //to get google-sheet id

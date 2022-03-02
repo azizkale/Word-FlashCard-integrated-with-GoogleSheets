@@ -994,7 +994,7 @@ MonoBehaviour:
     type: 3}
   prefabLanguageCard: {fileID: 5335306274766175664, guid: 76f90790855888a4eba6386c02095830,
     type: 3}
-  prefabLoading: {fileID: 7572401644055378791, guid: 9da57a23a91361747a622f2656338881,
+  prefabLoading: {fileID: 159684781684846832, guid: fa7e1bfda03353842bd3a1587c61975d,
     type: 3}
   canvas: {fileID: 353994492}
 --- !u!1 &1492626506
