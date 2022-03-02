@@ -132,7 +132,10 @@ public class Searching : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(inputQ.text) && !string.IsNullOrEmpty(inputA.text))
         {
-            Update.updateSingleWord(word, theLibrary, inputQ.text, inputA.text);
+            //to get the library that being updated word belongs
+            Library lib = Read.getLibrarysAllWords(word.libraryName);
+
+            Update.updateSingleWord(word, lib, inputQ.text, inputA.text);
             DestroyImmediate(cloneprefabupdateword);
             alertWarning.completedSuccesfully(prefabCompleteSuccessfully, canvas);
 

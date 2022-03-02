@@ -1,9 +1,12 @@
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Read : MonoBehaviour
-{
+{ 
+    
     public static List<AllLibrariesInfo> getListAllLibrariesInfo()
     {
         List<AllLibrariesInfo> allLibrariesInfo = JsonConvert.DeserializeObject<List<AllLibrariesInfo>>(PlayerPrefs.GetString("allLibrariesInfo"));      
@@ -51,7 +54,9 @@ public class Read : MonoBehaviour
         
         foreach (Word word in theLibrary.words.ToArray())
         {
-            if(!(word.theWord +" "+ word.meaning).Contains(searchString))
+            // this odd code is in order to make the search insensitive
+            StringComparison stringComparison = StringComparison.CurrentCultureIgnoreCase;
+            if ((word.theWord +" "+ word.meaning).IndexOf(searchString, stringComparison) < 0)
             {
                 theLibrary.words.Remove(word);
             }
@@ -173,7 +178,9 @@ public class Read : MonoBehaviour
 
         foreach (Word word in theLibrary.words.ToArray())
         {
-            if (!(word.theWord + " " + word.meaning).Contains(searchString))
+            // this odd code is in order to make the search insensitive
+            StringComparison stringComparison = StringComparison.CurrentCultureIgnoreCase;
+            if ((word.theWord + " " + word.meaning).IndexOf(searchString, stringComparison) < 0)
             {
                 theLibrary.words.Remove(word);
             }

@@ -49,7 +49,7 @@ public class Update : MonoBehaviour
         newword.languageTo = oldword.languageTo;
         newword.viewCount = oldword.viewCount;
 
-        int index = library.words.IndexOf(oldword);
+        int index = library.words.IndexOf(newword);
 
         library.words[index] = newword;
         
