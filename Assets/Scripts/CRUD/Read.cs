@@ -59,6 +59,7 @@ public class Read : MonoBehaviour
         return theLibrary;
     }
 
+    //== All-Words-Library-Functions
     public static List<Word> combineAllWords()
     {
         List<Word> allWords = new List<Word>();
@@ -72,6 +73,35 @@ public class Read : MonoBehaviour
         return allWords;
     }
 
+    public static List<Word> combineAllActiveWords()
+    {
+        List<Word> allActiveWords = new List<Word>();
+
+        foreach (Word word in combineAllWords())
+        {
+            if(word.archive != false)
+            {
+                allActiveWords.Add(word);
+            }
+        }
+        return allActiveWords;
+    }
+
+    public static List<Word> combineAllArchiveWords()
+    {
+        List<Word> allArchiveWords = new List<Word>();
+
+        foreach (Word word in combineAllWords())
+        {
+            if(word.archive == true)
+            {
+                allArchiveWords.Add(word);
+            }
+        }
+
+        return allArchiveWords;
+    }
+   
     public static Library getAllLibrariesWords()
     {
         Library allWordsLibrary = new Library();
@@ -83,7 +113,7 @@ public class Read : MonoBehaviour
         return allWordsLibrary;
     }
 
-    public static Library getAllActiveWords()
+    public static Library getAllLibrariesActiveWords()
     {
         Library allActiveWordsLibrary = new Library();
         List<Word> allActiveWords = new List<Word>();
@@ -103,7 +133,7 @@ public class Read : MonoBehaviour
         return allActiveWordsLibrary;
     }
 
-    public static Library getAllArchiveWords()
+    public static Library getAllLibrariesArchiveWords()
     {
         Library allAArchiveWordsLibrary = new Library();
         List<Word> allArchiveWords = new List<Word>();
@@ -121,5 +151,30 @@ public class Read : MonoBehaviour
         allAArchiveWordsLibrary.words = allArchiveWords;
         allAArchiveWordsLibrary.wordsCount = allArchiveWords.Count;
         return allAArchiveWordsLibrary;
+    }
+
+    public static Library getBeingSearchWordsInAlllibraries(string libraryname, string searchString)
+    {
+        Library theLibrary = new Library();
+        theLibrary.name = libraryname;
+
+        if(libraryname =="All Words")
+        {
+
+        }
+        
+        if(libraryname == "All Archive Words")
+        {
+
+        }
+
+        foreach (Word word in theLibrary.words.ToArray())
+        {
+            if (!(word.theWord + " " + word.meaning).Contains(searchString))
+            {
+                theLibrary.words.Remove(word);
+            }
+        }
+        return theLibrary;
     }
 }

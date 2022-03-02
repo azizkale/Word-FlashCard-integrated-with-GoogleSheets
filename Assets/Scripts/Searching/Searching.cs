@@ -36,11 +36,11 @@ public class Searching : MonoBehaviour
                 dropdownCallingLibraryOption.GetComponent<TMP_Dropdown>().value = 1;
                 break;
             case CallingCode.active:
-                theLibrary = Read.getAllActiveWords();
+                theLibrary = Read.getAllLibrariesActiveWords();
                 dropdownCallingLibraryOption.GetComponent<TMP_Dropdown>().value = 0;
                 break;
             case CallingCode.archive:
-                theLibrary = Read.getAllArchiveWords();
+                theLibrary = Read.getAllLibrariesArchiveWords();
                 dropdownCallingLibraryOption.GetComponent<TMP_Dropdown>().value = 2;
                 break;
             case CallingCode.search:

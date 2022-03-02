@@ -241,16 +241,3 @@ public class MyLibrary : MonoBehaviour
         createFileNamesCards();
     }
 }
-
-
-//List<AllLibrariesInfo> allLibrariesInfo = Read.getListAllLibrariesInfo();
-////List<string> allLibrariesNames = new List<string>();
-//List<Word> allWords = new List<Word>();
-
-//foreach (AllLibrariesInfo info in allLibrariesInfo)
-//{
-//    foreach (Word word in Read.getLibrarysAllWords(info.name).words)
-//    {
-//        allWords.Add(word);
-//    }
-//}
