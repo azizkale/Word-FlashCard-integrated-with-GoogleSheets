@@ -57,9 +57,9 @@ public class TrainingWithFlashCard : MonoBehaviour
     {
         displayingWord = libraryToLearn.words[index];
 
-        turningCard.GetComponent<Image>().transform.Find("btnQuestion").transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text = displayingWord.theWord;
+        turningCard.GetComponent<Image>().transform.Find("btnQuestion").transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text = CommonVariables.charachterLimit(displayingWord.theWord,150);
 
-        turningCard.GetComponent<Image>().transform.Find("btnAnswer").transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text = displayingWord.meaning;
+        turningCard.GetComponent<Image>().transform.Find("btnAnswer").transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text = CommonVariables.charachterLimit(displayingWord.meaning,150);
 
         //to display sightCount of the word
         wordInfo.transform.Find("ViewCountIcon").transform.Find("TMP_ViewCount").GetComponent<TextMeshProUGUI>().text = displayingWord.viewCount.ToString();
@@ -299,10 +299,10 @@ public class TrainingWithFlashCard : MonoBehaviour
 
         clonePrefabScoer1.transform.localScale = Vector3.one / 3;
 
-        for (int i = 1; i <= 15 ; i++)
+        for (int i = 1; i <= 20 ; i++)
         {
-           yield return clonePrefabScoer1.transform.localScale = i * Vector3.one / 15;
-           yield return clonePrefabScoer1.transform.localPosition = new Vector3(-8/5*i, position*i, 0);
+           yield return clonePrefabScoer1.transform.localScale = i * Vector3.one / 20;
+           yield return clonePrefabScoer1.transform.localPosition = new Vector3(-1*i, position*2*i, 0);
            yield return new WaitForSeconds(0.000000000000000000001f);
         }
         Destroy(clonePrefabScoer1);
