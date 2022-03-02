@@ -1,5 +1,4 @@
-﻿
-public static class CommonVariables 
+﻿public static class CommonVariables 
 {
 
     public static (string libraryName, CallingCode callingCode) callingLibrary;

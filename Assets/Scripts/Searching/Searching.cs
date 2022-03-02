@@ -1,19 +1,19 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MyLibrary : MonoBehaviour
+public class Searching : MonoBehaviour
 {
-    public GameObject prefabWordsPairCard; 
+    public GameObject prefabWordsPairCard;
     public GameObject prefabUpdateWord;
     public GameObject prefabCompleteSuccessfully;
     public GameObject prefabGeneralWarnung;
     public GameObject scrolContainer;
     public GameObject canvas;
-    public GameObject libraryTitle;
     public GameObject libraryWordCount;
+    public TextMeshProUGUI libraryTitle;
 
     public TMP_InputField searchInput;
 
@@ -21,20 +21,20 @@ public class MyLibrary : MonoBehaviour
 
     public TMP_Dropdown dropdownCallingLibraryOption;
     private Library theLibrary = new Library();
-    private List<Word> listToManupulateWords = new List<Word>();   
-
+    private List<Word> listToManupulateWords = new List<Word>();
     void Start()
     {
-        createFileNamesCards();       
+        createFileNamesCards();
     }
 
     public void createFileNamesCards()
-    {       
+    {
         switch (CommonVariables.callingLibrary.callingCode)
         {
             case CallingCode.all:
-                theLibrary = Read.getLibrarysAllWords(CommonVariables.callingLibrary.libraryName);
+                theLibrary = Read.getAllLibrariesWords();
                 dropdownCallingLibraryOption.GetComponent<TMP_Dropdown>().value = 1;
+                libraryTitle.text = "All Words";
                 break;
             case CallingCode.active:
                 theLibrary = Read.getLibraryActiveWords(CommonVariables.callingLibrary.libraryName);
@@ -45,22 +45,22 @@ public class MyLibrary : MonoBehaviour
                 dropdownCallingLibraryOption.GetComponent<TMP_Dropdown>().value = 2;
                 break;
             case CallingCode.search:
-                theLibrary = Read.getBeingSearchedwordsInASinglelibrary(CommonVariables.callingLibrary.libraryName,searchInput.text);
+                theLibrary = Read.getBeingSearchedwordsInASinglelibrary(CommonVariables.callingLibrary.libraryName, searchInput.text);
                 break;
             default:
-                theLibrary = Read.getLibrarysAllWords(CommonVariables.callingLibrary.libraryName);
+                theLibrary = Read.getAllLibrariesWords();
+                dropdownCallingLibraryOption.GetComponent<TMP_Dropdown>().value = 1;
+                libraryTitle.text = "All Words";
                 break;
         }
 
         //word count of the current library theLibrary)
         libraryWordCount.GetComponent<TextMeshProUGUI>().text = theLibrary.words.Count.ToString();
-        //theLibrary's name
-        libraryTitle.GetComponent<TextMeshProUGUI>().text = CommonVariables.charachterLimit(theLibrary.name, 14);
 
         resetClones();
         listPrefabClonesbWordPair.Clear();
 
-        createWordPairGameObjects(theLibrary.words);      
+        createWordPairGameObjects(theLibrary.words);
     }
 
     private void createWordPairGameObjects(List<Word> list)
@@ -132,13 +132,13 @@ public class MyLibrary : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(inputQ.text) && !string.IsNullOrEmpty(inputA.text))
         {
-            Update.updateSingleWord(word, theLibrary, inputQ.text, inputA.text); 
+            Update.updateSingleWord(word, theLibrary, inputQ.text, inputA.text);
             DestroyImmediate(cloneprefabupdateword);
             alertWarning.completedSuccesfully(prefabCompleteSuccessfully, canvas);
 
             //renew the on the screen
             cloneprefabWordsPairCard.transform.Find("Button").transform.Find("TMP_question").GetComponent<TextMeshProUGUI>().text = inputQ.text;
-            
+
             cloneprefabWordsPairCard.transform.Find("Button").transform.Find("TMP_answer").GetComponent<TextMeshProUGUI>().text = inputA.text;
         }
         else
@@ -160,7 +160,7 @@ public class MyLibrary : MonoBehaviour
     public void sendToArchive()
     {
         foreach (Word word in listToManupulateWords)
-        {          
+        {
             //theLibrary is re-filled in oreder to save all words except deleted one
             theLibrary = Read.getLibrarysAllWords(theLibrary.name);
             //changing "archive" property oft the selected word
@@ -188,14 +188,14 @@ public class MyLibrary : MonoBehaviour
     }
 
     public void optionalLibraryContent()
-    {       
+    {
         int menuIndex = dropdownCallingLibraryOption.GetComponent<TMP_Dropdown>().value;
         //reloasd the words list (theLibary.words)
         switch (menuIndex)
         {
             case 1:
                 CommonVariables.callingLibrary = (theLibrary.name, CallingCode.all);
-                break;  
+                break;
             case 0:
                 CommonVariables.callingLibrary = (theLibrary.name, CallingCode.active);
                 break;
@@ -203,10 +203,10 @@ public class MyLibrary : MonoBehaviour
                 CommonVariables.callingLibrary = (theLibrary.name, CallingCode.archive);
                 break;
         }
-        createFileNamesCards();       
+        createFileNamesCards();
     }
 
-   public void selectAllWords()
+    public void selectAllWords()
     {
         foreach (GameObject clone in listPrefabClonesbWordPair)
         {
@@ -222,7 +222,7 @@ public class MyLibrary : MonoBehaviour
         }
         listToManupulateWords.Clear();
     }
-   
+
     private void resetClones()
     {
         foreach (GameObject clone in listPrefabClonesbWordPair)
@@ -240,17 +240,6 @@ public class MyLibrary : MonoBehaviour
 
         createFileNamesCards();
     }
+
+
 }
-
-
-//List<AllLibrariesInfo> allLibrariesInfo = Read.getListAllLibrariesInfo();
-////List<string> allLibrariesNames = new List<string>();
-//List<Word> allWords = new List<Word>();
-
-//foreach (AllLibrariesInfo info in allLibrariesInfo)
-//{
-//    foreach (Word word in Read.getLibrarysAllWords(info.name).words)
-//    {
-//        allWords.Add(word);
-//    }
-//}

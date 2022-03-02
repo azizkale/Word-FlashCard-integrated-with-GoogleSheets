@@ -55,9 +55,13 @@ public class SideMenu : MonoBehaviour
         StartCoroutine(sideMenuClose());       
     }
     public void goToFlashCardTraining()
-    {
-        
+    {        
         SceneManager.LoadScene("flashcard");
+    }
+
+    public void goToAllWords()
+    {
+        SceneManager.LoadScene("Searching");
     }
 
     public void quitFromApp()

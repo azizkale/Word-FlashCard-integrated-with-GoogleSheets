@@ -2227,7 +2227,7 @@ GameObject:
   - component: {fileID: 9119766731477546784}
   - component: {fileID: 8934391644670509955}
   m_Layer: 5
-  m_Name: btn_Learn (1)
+  m_Name: btn_AllWords
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3162,7 +3162,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Learn
+  m_text: All Words
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5cfc9d200727f8b419e16d3c3ba6bcb3, type: 2}
   m_sharedMaterial: {fileID: -8446990876416983088, guid: 5cfc9d200727f8b419e16d3c3ba6bcb3,
@@ -3275,7 +3275,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9119766731477546784}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1097406875}
+        m_TargetAssemblyTypeName: SideMenu, Assembly-CSharp
+        m_MethodName: goToAllWords
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &9119766731477546784
 MonoBehaviour:
   m_ObjectHideFlags: 0

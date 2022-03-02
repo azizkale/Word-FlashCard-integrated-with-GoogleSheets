@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Read : MonoBehaviour
@@ -57,5 +58,30 @@ public class Read : MonoBehaviour
             }
         }
         return theLibrary;
+    }
+
+    public static List<Word> combineAllWords()
+    {
+        List<Word> allWords = new List<Word>();
+        List<AllLibrariesInfo> allLibrariesInfo = Read.getListAllLibrariesInfo();
+
+        foreach (AllLibrariesInfo info in allLibrariesInfo)
+        {
+            Library lib = Read.getLibrarysAllWords(info.name);
+            allWords.AddRange(lib.words); // all libraries are joined
+        }
+
+        return allWords;
+    }
+
+    public static Library getAllLibrariesWords()
+    {
+        Library allWordsLibrary = new Library();
+
+        allWordsLibrary.name = "AllLibraries";
+        allWordsLibrary.language = "Multilanguage";
+        allWordsLibrary.words = combineAllWords();
+        allWordsLibrary.wordsCount = combineAllWords().Count;
+        return allWordsLibrary;
     }
 }

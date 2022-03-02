@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Learning/flashcard.unity
     guid: dd9ede3d861347a4d88849bdd113839d
+  - enabled: 1
+    path: Assets/Scenes/Searching/Searching.unity
+    guid: 64d52f6bbd2336a468220a23b215b6cb
   m_configObjects: {}
