@@ -71,11 +71,11 @@ public class MyLibrary : MonoBehaviour
 
             //TMP_Question
             TextMeshProUGUI questionOnPrefab = cloneprefabWordsPairCard.transform.Find("Button").transform.Find("TMP_question").GetComponent<TextMeshProUGUI>();
-            questionOnPrefab.text = CommonVariables.charachterLimit(word.theWord, 30);
+            questionOnPrefab.text = CommonVariables.charachterLimit(word.theWord, 25);
 
             //TMP_Answer
             TextMeshProUGUI answerOnPrefab = cloneprefabWordsPairCard.transform.Find("Button").transform.Find("TMP_answer").GetComponent<TextMeshProUGUI>();
-            answerOnPrefab.text = CommonVariables.charachterLimit(word.meaning, 30);
+            answerOnPrefab.text = CommonVariables.charachterLimit(word.meaning, 25);
 
             //Toggle on the word-pair ()
             cloneprefabWordsPairCard.transform.Find("Toggle").GetComponent<Toggle>().onValueChanged.AddListener((val) => {
@@ -102,11 +102,11 @@ public class MyLibrary : MonoBehaviour
 
                 //question text
                 TMP_InputField inputQ = cloneprefabupdateword.transform.Find("TextField").transform.Find("TMPQuestion").GetComponent<TMP_InputField>();
-                inputQ.text = word.theWord;
+                inputQ.text = CommonVariables.charachterLimit(word.theWord,25);
 
                 //answer text
                 TMP_InputField inputA = cloneprefabupdateword.transform.Find("TextField").transform.Find("TMPAnswer").GetComponent<TMP_InputField>();
-                inputA.text = word.meaning;
+                inputA.text = CommonVariables.charachterLimit(word.meaning,25);
 
                 //UPDATE button
                 cloneprefabupdateword.transform.Find("BottomMenu").transform.Find("btnUpdate").GetComponent<Button>().onClick.AddListener(() => {
@@ -137,9 +137,9 @@ public class MyLibrary : MonoBehaviour
             alertWarning.completedSuccesfully(prefabCompleteSuccessfully, canvas);
 
             //renew the on the screen
-            cloneprefabWordsPairCard.transform.Find("Button").transform.Find("TMP_question").GetComponent<TextMeshProUGUI>().text = inputQ.text;
+            cloneprefabWordsPairCard.transform.Find("Button").transform.Find("TMP_question").GetComponent<TextMeshProUGUI>().text = CommonVariables.charachterLimit(inputQ.text,25);
             
-            cloneprefabWordsPairCard.transform.Find("Button").transform.Find("TMP_answer").GetComponent<TextMeshProUGUI>().text = inputA.text;
+            cloneprefabWordsPairCard.transform.Find("Button").transform.Find("TMP_answer").GetComponent<TextMeshProUGUI>().text = CommonVariables.charachterLimit(inputA.text, 25);
         }
         else
             alertWarning.generalWarning(prefabGeneralWarnung, canvas, "Question and answer fields cannot be left blank!");
