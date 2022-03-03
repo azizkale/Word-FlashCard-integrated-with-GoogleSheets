@@ -140,12 +140,14 @@ public class Searching : MonoBehaviour
             alertWarning.completedSuccesfully(prefabCompleteSuccessfully, canvas);
 
             //renew the on the screen
+            word.theWord = inputQ.text;
+            word.meaning = inputA.text;
+
             cloneprefabWordsPairCard.transform.Find("Button").transform.Find("TMP_question").GetComponent<TextMeshProUGUI>().text = inputQ.text;
 
             cloneprefabWordsPairCard.transform.Find("Button").transform.Find("TMP_answer").GetComponent<TextMeshProUGUI>().text = inputA.text;
 
-            word.theWord = inputQ.text;
-            word.meaning = inputA.text;
+            
         }
         else
             alertWarning.generalWarning(prefabGeneralWarnung, canvas, "Question and answer fields cannot be left blank!");

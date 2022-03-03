@@ -75,7 +75,7 @@ public class MyLibrary : MonoBehaviour
 
             //TMP_Answer
             TextMeshProUGUI answerOnPrefab = cloneprefabWordsPairCard.transform.Find("Button").transform.Find("TMP_answer").GetComponent<TextMeshProUGUI>();
-            answerOnPrefab.text = CommonVariables.charachterLimit(word.meaning, 25);
+            answerOnPrefab.text = word.meaning;
 
             //Toggle on the word-pair ()
             cloneprefabWordsPairCard.transform.Find("Toggle").GetComponent<Toggle>().onValueChanged.AddListener((val) => {
