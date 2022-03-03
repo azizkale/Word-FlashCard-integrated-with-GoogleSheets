@@ -299,9 +299,9 @@ public class TrainingWithFlashCard : MonoBehaviour
 
         clonePrefabScoer1.transform.localScale = Vector3.one / 3;
 
-        for (int i = 1; i <= 20 ; i++)
+        for (int i = 1; i <= 10 ; i++)
         {
-           yield return clonePrefabScoer1.transform.localScale = i * Vector3.one / 20;
+           yield return clonePrefabScoer1.transform.localScale = i * Vector3.one / 10;
            yield return clonePrefabScoer1.transform.localPosition = new Vector3(-1*i, position*2*i, 0);
            yield return new WaitForSeconds(0.000000000000000000001f);
         }
