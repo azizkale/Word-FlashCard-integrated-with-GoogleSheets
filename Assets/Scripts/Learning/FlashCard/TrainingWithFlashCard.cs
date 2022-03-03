@@ -307,4 +307,11 @@ public class TrainingWithFlashCard : MonoBehaviour
         }
         Destroy(clonePrefabScoer1);
     }
+
+    public void copyText()
+    {        
+        GUIUtility.systemCopyBuffer = displayingWord.theWord;        
+    }
+
+   
 }
