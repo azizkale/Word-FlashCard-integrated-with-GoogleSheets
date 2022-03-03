@@ -71,11 +71,11 @@ public class Searching : MonoBehaviour
 
             //TMP_Question
             TextMeshProUGUI questionOnPrefab = cloneprefabWordsPairCard.transform.Find("Button").transform.Find("TMP_question").GetComponent<TextMeshProUGUI>();
-            questionOnPrefab.text = CommonVariables.charachterLimit(word.theWord, 30);
+            questionOnPrefab.text = word.theWord;
 
             //TMP_Answer
             TextMeshProUGUI answerOnPrefab = cloneprefabWordsPairCard.transform.Find("Button").transform.Find("TMP_answer").GetComponent<TextMeshProUGUI>();
-            answerOnPrefab.text = CommonVariables.charachterLimit(word.meaning, 30);
+            answerOnPrefab.text = word.meaning;
 
             //Toggle on the word-pair ()
             cloneprefabWordsPairCard.transform.Find("Toggle").GetComponent<Toggle>().onValueChanged.AddListener((val) => {
@@ -143,6 +143,9 @@ public class Searching : MonoBehaviour
             cloneprefabWordsPairCard.transform.Find("Button").transform.Find("TMP_question").GetComponent<TextMeshProUGUI>().text = inputQ.text;
 
             cloneprefabWordsPairCard.transform.Find("Button").transform.Find("TMP_answer").GetComponent<TextMeshProUGUI>().text = inputA.text;
+
+            word.theWord = inputQ.text;
+            word.meaning = inputA.text;
         }
         else
             alertWarning.generalWarning(prefabGeneralWarnung, canvas, "Question and answer fields cannot be left blank!");
