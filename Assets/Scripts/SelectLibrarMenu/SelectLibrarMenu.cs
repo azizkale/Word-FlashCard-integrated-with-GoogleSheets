@@ -39,7 +39,7 @@ public class SelectLibrarMenu : MonoBehaviour
             cloneselectLibraryBackground.transform.localScale = Vector3.one;
 
             //Library names
-            cloneSelectLibraryButton.transform.Find("Button").transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text = CommonVariables.charachterLimit(lab.name,10);
+            cloneSelectLibraryButton.transform.Find("Button").transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text = lab.name;
           
 
             // button selects the library which is wanted to learn

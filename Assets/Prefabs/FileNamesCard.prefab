@@ -228,7 +228,7 @@ RectTransform:
   m_Children:
   - {fileID: 4100660462427133646}
   - {fileID: 3282572983476873894}
-  - {fileID: 8925631140984988766}
+  - {fileID: 4359618109875550217}
   - {fileID: 5754476993041397799}
   m_Father: {fileID: 9040212279709338014}
   m_RootOrder: 0
@@ -355,7 +355,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 16.1, y: 0}
-  m_SizeDelta: {x: 514.0471, y: 97.1}
+  m_SizeDelta: {x: 607.1428, y: 97.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4918412624914415786
 CanvasRenderer:
@@ -455,7 +455,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!1 &6757663463954168517
+--- !u!1 &6554861382169407273
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -463,9 +463,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8925631140984988766}
-  - component: {fileID: 1125413863022567254}
-  - component: {fileID: 1163931857744390741}
+  - component: {fileID: 4359618109875550217}
+  - component: {fileID: 9021091376939886887}
+  - component: {fileID: 9161680939291366939}
   m_Layer: 5
   m_Name: TMP_LanguageInfo
   m_TagString: Untagged
@@ -473,14 +473,14 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &8925631140984988766
+--- !u!224 &4359618109875550217
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6757663463954168517}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_GameObject: {fileID: 6554861382169407273}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -489,24 +489,24 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -273, y: -56}
-  m_SizeDelta: {x: 216.8018, y: 54.288}
+  m_AnchoredPosition: {x: -77.84689, y: -62}
+  m_SizeDelta: {x: 428.3061, y: 67.7325}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &1125413863022567254
+--- !u!222 &9021091376939886887
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6757663463954168517}
-  m_CullTransparentMesh: 0
---- !u!114 &1163931857744390741
+  m_GameObject: {fileID: 6554861382169407273}
+  m_CullTransparentMesh: 1
+--- !u!114 &9161680939291366939
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6757663463954168517}
+  m_GameObject: {fileID: 6554861382169407273}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
@@ -520,7 +520,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0130ngilizce-Almanca"
+  m_text: German-English
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f2829a1ce973ba84b8c147f43fca5253, type: 2}
   m_sharedMaterial: {fileID: -6134032461277032858, guid: f2829a1ce973ba84b8c147f43fca5253,
@@ -531,7 +531,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4286611584
-  m_fontColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_fontColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -548,13 +548,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 29.7
-  m_fontSizeBase: 29.7
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -578,13 +578,13 @@ MonoBehaviour:
   m_isCullingEnabled: 0
   m_horizontalMapping: 0
   m_verticalMapping: 0
-  m_uvLineOffset: 5
+  m_uvLineOffset: 0
   m_geometrySortingOrder: 0
   m_IsTextObjectScaleStatic: 0
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 93.18713, y: -0.84262085, z: 0.84002686, w: -4.147827}
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
