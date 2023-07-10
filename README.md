@@ -13,4 +13,9 @@
 
 #### alternatively, you can download the words as a .tsv file and import it into the app on your device.
 
+<img src="./Assets/Images/readme/url.png" width="300">
+
 #### and create your libraries and name these  
+
+<img src="./Assets/Images/readme/import_device.jpeg" width="300">
+
