@@ -2,7 +2,7 @@
 
   
 
-#### With this app, you can practice the words you want to learn. All you need to do is export the words after translating them using Google Translate.  And again import it into the Just Learn it.
+#### With this app, you can practice the words you want to learn. All you need to do is export the words after translating them using Google Translate.  And again import it into Just Learn It.
 
 #### export the words by using your google translate in its web-site
 
