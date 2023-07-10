@@ -1,12 +1,15 @@
+### Word-FlashCard-integrated-with-GoogleSheets-Unity_app is a Flahcard application by that you can learn language, integrated with Google Sheets
 
-# Word-FlashCard-integrated-with-GoogleSheets-Unity_app
-2
-A Flahcard application by that you can learn language, integrated with Google Sheets
-3
-## you can crate your word or sentences-libraries in any language
-4
-<img src="https://user-images.githubusercontent.com/64408361/181343626-b24dac20-4a71-4782-81e2-790f333e44a6.jpeg" width="auto" height="320">
-5
-## you can crate your word or sentences-libraries in any language
-6
-<img src="https://user-images.githubusercontent.com/64408361/181344469-707031d8-70c7-4a02-b104-81c372a69bf5.jpeg" width="auto" height="320">
+  
+
+#### With this app, you can practice the words you want to learn. All you need to do is export the words after translating them using Google Translate.  And again import it into the Just Learn it.
+
+#### export the words by using your google translate in its web-site
+
+<img src=".Assets/Images/readme/export.jpeg" width="600">
+
+#### and get the link of your new google-sheets
+
+#### alternatively, you can download the words as a .tsv file and import it into the app on your device.
+
+#### and create your libraries and name these
