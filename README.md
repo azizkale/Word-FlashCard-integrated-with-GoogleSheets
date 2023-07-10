@@ -6,7 +6,7 @@
 
 #### export the words by using your google translate in its web-site
 
-<img src="./Assets/Images/readme/export.jpeg" width="600">
+<img src="./Assets/Images/readme/export.jpeg" width="300">
 
 #### and get the link of your new google-sheets
 
