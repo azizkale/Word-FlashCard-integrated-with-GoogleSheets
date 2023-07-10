@@ -9,7 +9,8 @@
 <img src="./Assets/Images/readme/export.jpeg" width="300">
 
 #### and get the link of your new google-sheets
+<img src="./Assets/Images/readme/url.png" width="300">
 
 #### alternatively, you can download the words as a .tsv file and import it into the app on your device.
 
-#### and create your libraries and name these
+#### and create your libraries and name these  
